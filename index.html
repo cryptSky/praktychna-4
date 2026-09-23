@@ -3,145 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Спеціальні можливості Windows 11</title>
-<meta name="description" content="Практична робота: екранна лупа та екранна клавіатура у Windows 11">
+<title>Лупа і клавіатура на екрані</title>
+<meta name="description" content="Практична робота для 8 класу: екранна лупа та екранна клавіатура у Windows 11">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f5f7fb; --card:#ffffff; --text:#1d2433; --muted:#5b6475; --line:#dde3ee;
-  --accent:#2f5bd3; --accent-soft:#e7eeff; --green:#1f9d61; --green-soft:#e3f6ec;
-  --amber:#b7791f; --amber-soft:#fff5e0; --violet:#6b46c1; --violet-soft:#f1ebff;
-  --key-bg:#fff; --key-shadow:#c5cddd;
+  --bg:#f4f7fc; --card:#fff; --text:#1c2333; --muted:#5a6477; --line:#dbe2ee;
+  --blue:#2f6bff; --blue-soft:#e6eeff; --green:#17a066; --green-soft:#e2f6ec;
+  --orange:#e37400; --orange-soft:#fff1de; --purple:#7a4de0; --purple-soft:#f0e9ff;
+  --pink:#d63384; --pink-soft:#ffe6f1;
+  --key:#ffffff; --key-edge:#b9c3d6; --key-text:#1c2333; --kb-bg:#e9edf5;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#11151e; --card:#1a2030; --text:#e8ecf4; --muted:#a3adc2; --line:#2c3447;
-    --accent:#7aa2ff; --accent-soft:#1f2b4a; --green:#4fd197; --green-soft:#16362a;
-    --amber:#f0b95a; --amber-soft:#3a2e15; --violet:#b69cff; --violet-soft:#2b2245;
-    --key-bg:#232a3c; --key-shadow:#0b0e15;
+    --bg:#10141d; --card:#1a2030; --text:#eef1f7; --muted:#a8b2c6; --line:#2d3548;
+    --blue:#7ea4ff; --blue-soft:#1d2a4a; --green:#4fd39a; --green-soft:#15372a;
+    --orange:#ffb35c; --orange-soft:#3b2a13; --purple:#b49bff; --purple-soft:#2a2146;
+    --pink:#ff7ab8; --pink-soft:#3d1c2d;
+    --key:#262e42; --key-edge:#0c0f16; --key-text:#eef1f7; --kb-bg:#141925;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#11151e; --card:#1a2030; --text:#e8ecf4; --muted:#a3adc2; --line:#2c3447;
-  --accent:#7aa2ff; --accent-soft:#1f2b4a; --green:#4fd197; --green-soft:#16362a;
-  --amber:#f0b95a; --amber-soft:#3a2e15; --violet:#b69cff; --violet-soft:#2b2245;
-  --key-bg:#232a3c; --key-shadow:#0b0e15;
+  --bg:#10141d; --card:#1a2030; --text:#eef1f7; --muted:#a8b2c6; --line:#2d3548;
+  --blue:#7ea4ff; --blue-soft:#1d2a4a; --green:#4fd39a; --green-soft:#15372a;
+  --orange:#ffb35c; --orange-soft:#3b2a13; --purple:#b49bff; --purple-soft:#2a2146;
+  --pink:#ff7ab8; --pink-soft:#3d1c2d;
+  --key:#262e42; --key-edge:#0c0f16; --key-text:#eef1f7; --kb-bg:#141925;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 "Open Sans",system-ui,sans-serif}
-h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;line-height:1.25}
-a{color:var(--accent)}
-.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+body{margin:0;background:var(--bg);color:var(--text);font:18px/1.7 Nunito,system-ui,sans-serif}
+h1,h2,h3{line-height:1.25;font-weight:900}
+a{color:var(--blue)}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+p{margin:0 0 12px}
 
-header.hero{background:linear-gradient(135deg,#2f5bd3,#6b46c1);color:#fff;padding:48px 0 40px}
-.hero .tag{display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px;font-size:14px;font-weight:600}
-.hero h1{font-size:clamp(28px,5vw,42px);margin:14px 0 10px;font-weight:800}
-.hero p{max-width:640px;opacity:.95;margin:0}
-.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.meta span{background:rgba(255,255,255,.14);padding:6px 12px;border-radius:10px;font-size:14px}
+/* Шапка */
+.hero{background:linear-gradient(135deg,#2f6bff,#7a4de0);color:#fff;padding:44px 0 38px}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:99px;font-size:15px;font-weight:800}
+.hero h1{font-size:clamp(28px,6vw,44px);margin:14px 0 10px}
+.hero p{font-size:19px;max-width:620px}
+.hero .icons{font-size:44px;letter-spacing:8px}
 
-nav.toc{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
-nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;align-items:center}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px}
-nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
-.progress{margin-left:auto;white-space:nowrap;font-size:13px;color:var(--muted);padding-left:8px}
-.theme-btn{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;padding:5px 9px;cursor:pointer;font-size:14px}
+/* Меню */
+nav.toc{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 16px;align-items:center;scrollbar-width:none}
+nav.toc .wrap::-webkit-scrollbar{display:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:800;font-size:15px;padding:6px 10px;border-radius:10px}
+nav.toc a:hover{background:var(--blue-soft);color:var(--blue)}
+.progress{margin-left:auto;white-space:nowrap;font-size:14px;font-weight:800;color:var(--green);padding:0 8px}
+.theme-btn{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:4px 10px;cursor:pointer;font-size:16px}
 
-section{padding:36px 0 8px}
-section h2{font-size:clamp(22px,3.5vw,28px);margin:0 0 14px;display:flex;align-items:center;gap:12px}
-.num{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:16px 0}
-.card h3{margin:0 0 10px;font-size:19px}
+section{padding:34px 0 6px}
+section>h2{font-size:clamp(24px,4vw,30px);margin:0 0 16px;display:flex;align-items:center;gap:12px}
+.num{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--blue);color:#fff;font-size:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:16px 0}
+.card h3{margin:0 0 10px;font-size:21px}
+.big{font-size:20px}
 
-.note{border-left:5px solid;border-radius:12px;padding:14px 18px;margin:16px 0}
-.note.info{background:var(--accent-soft);border-color:var(--accent)}
-.note.tip{background:var(--green-soft);border-color:var(--green)}
-.note.warn{background:var(--amber-soft);border-color:var(--amber)}
-.note b:first-child{display:block;margin-bottom:4px}
+.box{border-radius:16px;padding:14px 18px;margin:16px 0;display:flex;gap:14px;align-items:flex-start}
+.box .ico{font-size:30px;line-height:1}
+.box.info{background:var(--blue-soft)}
+.box.tip{background:var(--green-soft)}
+.box.warn{background:var(--orange-soft)}
+.box.fun{background:var(--purple-soft)}
+.box b.t{display:block}
 
-kbd{display:inline-block;min-width:28px;text-align:center;font:600 14px/1 "Open Sans",sans-serif;padding:6px 8px;border-radius:7px;background:var(--key-bg);border:1px solid var(--line);box-shadow:0 3px 0 var(--key-shadow);margin:2px 1px;color:var(--text)}
+/* Маленька клавіша в тексті */
+kbd{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:30px;font:800 15px/1 Nunito,sans-serif;padding:6px 9px;border-radius:8px;background:var(--key);border:1px solid var(--line);box-shadow:0 3px 0 var(--key-edge);margin:2px 1px;color:var(--key-text);vertical-align:middle}
+kbd svg{width:14px;height:14px}
+
 .path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
-.path span{background:var(--violet-soft);color:var(--violet);font-weight:600;padding:5px 11px;border-radius:8px;font-size:15px}
-.path i{color:var(--muted);font-style:normal}
+.path span{background:var(--purple-soft);color:var(--purple);font-weight:800;padding:5px 12px;border-radius:10px;font-size:16px}
+.path i{color:var(--muted);font-style:normal;font-weight:900}
 
 ol.steps{counter-reset:s;list-style:none;padding:0;margin:0}
-ol.steps>li{counter-increment:s;position:relative;padding:0 0 16px 46px}
-ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 14px 48px;min-height:36px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900;display:grid;place-items:center}
 
-.tbl{width:100%;border-collapse:collapse;font-size:15px}
-.tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.tbl th{font-family:Montserrat,sans-serif;font-size:14px;color:var(--muted)}
+/* ===== Показ комбінацій ===== */
+.combo{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:18px;margin:18px 0}
+.combo-title{font-weight:900;font-size:20px;margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.combo-title .what{background:var(--blue-soft);color:var(--blue);padding:2px 12px;border-radius:99px;font-size:15px}
+.caps{display:flex;align-items:flex-start;justify-content:center;gap:10px;flex-wrap:wrap}
+.capwrap{display:flex;flex-direction:column;align-items:center;gap:8px;width:96px}
+.cap{width:84px;height:74px;border-radius:14px;background:var(--key);border:2px solid var(--key-edge);box-shadow:0 7px 0 var(--key-edge);display:grid;place-items:center;font-weight:900;font-size:24px;color:var(--key-text);transition:transform .15s, box-shadow .15s, background .15s, color .15s;position:relative}
+.cap.wide{width:96px}
+.cap svg{width:30px;height:30px}
+.cap small{position:absolute;right:7px;bottom:4px;font-size:12px;opacity:.6}
+.cap.down{transform:translateY(6px);box-shadow:0 1px 0 var(--key-edge);background:var(--c);color:#fff;border-color:var(--c)}
+.cap.down svg rect{fill:#fff}
+.hint{font-size:14px;font-weight:800;text-align:center;line-height:1.25;color:var(--muted)}
+.hint .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;font-size:13px;margin-bottom:3px}
+.plus{font-size:30px;font-weight:900;color:var(--muted);align-self:center;margin-top:-30px}
+.status{margin:14px auto 0;text-align:center;font-weight:900;font-size:19px;min-height:30px;padding:6px 14px;border-radius:12px;background:var(--bg);max-width:520px}
+.status.ok{color:var(--green)}
+.hand{font-size:22px}
+
+/* Міні-клавіатура */
+.kb{background:var(--kb-bg);border-radius:14px;padding:8px;margin-top:14px;display:flex;flex-direction:column;gap:4px;user-select:none}
+.kb .row{display:flex;gap:4px}
+.kb .k{flex-basis:0;min-width:0;height:32px;border-radius:6px;background:var(--key);border:1px solid var(--key-edge);box-shadow:0 2px 0 var(--key-edge);font-size:11px;font-weight:800;color:var(--muted);display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1;position:relative;overflow:hidden;transition:background .15s}
+.kb .k.sp{visibility:hidden}
+.kb .k.fn{height:24px;font-size:9px}
+.kb .k .cy{font-size:9px;opacity:.7;margin-top:2px}
+.kb .k svg{width:12px;height:12px}
+.kb .k.hl{background:var(--c);color:#fff;border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 35%,transparent)}
+.kb .k.hl svg rect{fill:#fff}
+.kb .k.hl .cy{opacity:1}
+.kb .k .badge{position:absolute;top:1px;left:3px;font-size:9px}
+.kb-legend{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+@media (max-width:600px){
+  .kb .k{height:26px;font-size:8px}
+  .kb .k .cy{display:none}
+  .kb{gap:3px;padding:5px}.kb .row{gap:3px}
+  .cap{width:66px;height:60px;font-size:19px}.cap.wide{width:76px}.capwrap{width:78px}
+  .cap svg{width:24px;height:24px}
+}
+
+/* Режими лупи */
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.mode svg{width:100%;height:auto;display:block;margin-bottom:10px}
+.mode h4{margin:0 0 6px;font-size:19px}
+.mode p{margin:0;font-size:16px;color:var(--muted)}
+
+.tbl{width:100%;border-collapse:collapse;font-size:17px}
+.tbl td,.tbl th{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.tbl th{color:var(--muted);font-size:15px}
 .tbl-wrap{overflow-x:auto}
 
-.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.mode{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-.mode svg{width:100%;height:auto;display:block;margin-bottom:10px}
-.mode h4{margin:0 0 6px;font-family:Montserrat,sans-serif}
-.mode p{margin:0;font-size:15px;color:var(--muted)}
+/* Екранна клавіатура — макет */
+.osk-btns{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.osk-btns div{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:16px}
+.osk-btns b{display:inline-block;background:var(--key);border:1px solid var(--key-edge);border-radius:6px;padding:1px 8px;margin-right:6px}
 
-.task{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:18px 20px;margin:14px 0;transition:border-color .2s}
+/* Тренажер */
+.trainer-out{min-height:56px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:18px;font-weight:900}
+
+/* Завдання */
+.task{background:var(--card);border:3px solid var(--line);border-radius:20px;padding:18px 20px;margin:16px 0;transition:border-color .2s}
 .task.done{border-color:var(--green)}
-.task-head{display:flex;gap:12px;align-items:flex-start}
-.task-head input{width:24px;height:24px;margin-top:2px;accent-color:var(--green);flex:none;cursor:pointer}
-.task-head label{font-weight:700;font-family:Montserrat,sans-serif;cursor:pointer}
-.task .body{margin-left:36px}
-.task ul{margin:8px 0 0;padding-left:20px}
-.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
-.b-lupa{background:var(--accent-soft);color:var(--accent)}
-.b-kb{background:var(--violet-soft);color:var(--violet)}
+.task-head{display:flex;gap:12px;align-items:center}
+.task-head input{width:28px;height:28px;accent-color:var(--green);flex:none;cursor:pointer}
+.task-head label{font-weight:900;font-size:20px;cursor:pointer}
+.task .body{margin-top:8px}
+.task ol{margin:6px 0 0;padding-left:24px}
+.task li{margin:6px 0}
+.tag2{display:inline-block;font-size:13px;font-weight:900;padding:2px 10px;border-radius:99px;margin-left:4px;vertical-align:middle}
+.t-l{background:var(--blue-soft);color:var(--blue)}
+.t-k{background:var(--purple-soft);color:var(--purple)}
+.shot{display:inline-block;background:var(--pink-soft);color:var(--pink);font-weight:900;border-radius:8px;padding:0 8px}
+textarea.try{width:100%;min-height:80px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--text);padding:12px;font:18px/1.5 Nunito,sans-serif;margin-top:8px}
+.sample{background:var(--bg);border:2px dashed var(--line);border-radius:14px;padding:12px;margin-top:8px}
+.tiny{font-size:8px;line-height:1.4;color:var(--muted)}
 
-textarea.try{width:100%;min-height:90px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);padding:12px;font:16px/1.5 "Open Sans",sans-serif;margin-top:10px}
-.sample{background:var(--bg);border:1px dashed var(--line);border-radius:12px;padding:14px;margin-top:10px}
-.tiny{font-size:9px;line-height:1.4;color:var(--muted)}
-
-.quiz .q{margin:0 0 18px}
-.quiz .q p{font-weight:600;margin:0 0 8px}
-.quiz label{display:block;padding:8px 12px;border:1px solid var(--line);border-radius:10px;margin:6px 0;cursor:pointer}
-.quiz label:hover{background:var(--accent-soft)}
-.quiz input{margin-right:8px;accent-color:var(--accent)}
+/* Тест */
+.quiz .q{margin:0 0 20px}
+.quiz .q p{font-weight:900;margin:0 0 8px}
+.quiz label{display:block;padding:9px 14px;border:2px solid var(--line);border-radius:12px;margin:6px 0;cursor:pointer}
+.quiz label:hover{background:var(--blue-soft)}
+.quiz input{margin-right:8px;accent-color:var(--blue);transform:scale(1.2)}
 .quiz label.ok{background:var(--green-soft);border-color:var(--green)}
-.quiz label.bad{background:var(--amber-soft);border-color:var(--amber)}
-button.main{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:12px 20px;font:700 16px Montserrat,sans-serif;cursor:pointer}
-#score{font-weight:700;margin-left:12px}
+.quiz label.bad{background:var(--orange-soft);border-color:var(--orange)}
+button.main{background:var(--blue);color:#fff;border:0;border-radius:14px;padding:13px 24px;font:900 18px Nunito,sans-serif;cursor:pointer}
+#score{font-weight:900;margin-left:12px;font-size:20px}
 
-footer{padding:40px 0;color:var(--muted);font-size:14px;text-align:center}
-@media (max-width:560px){
-  body{font-size:16px}
-  .card{padding:16px}
-  .task .body{margin-left:0}
-  ol.steps>li{padding-left:40px}
-}
-@media print{nav.toc,.theme-btn{display:none}header.hero{background:none;color:#000}}
+.cheat td:first-child{white-space:nowrap}
+footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
+@media (max-width:560px){ body{font-size:17px} .card,.combo,.task{padding:14px} }
+@media print{nav.toc,.theme-btn{display:none}.hero{background:none;color:#000}}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="tag">Практична робота · Інформатика</span>
-    <h1>Спеціальні можливості Windows&nbsp;11: екранна лупа та екранна клавіатура</h1>
-    <p>Навчимося знаходити інструменти спеціальних можливостей, вмикати їх, налаштовувати й використовувати для щоденної роботи з комп’ютером.</p>
-    <div class="meta">
-      <span>⏱ 35–45 хвилин</span>
-      <span>💻 Windows 11</span>
-      <span>📝 Звіт зі скриншотами</span>
-    </div>
+    <div class="icons">🔍 ⌨️</div>
+    <span class="tag">Практична робота · 8 клас · 20 хвилин</span>
+    <h1>Лупа і клавіатура на екрані</h1>
+    <p>Сьогодні ти навчишся збільшувати все на екрані, як через збільшувальне скло, і друкувати мишкою без звичайної клавіатури.</p>
   </div>
 </header>
 
 <nav class="toc" aria-label="Зміст">
   <div class="wrap">
-    <a href="#intro">Вступ</a>
-    <a href="#find">Де знайти</a>
-    <a href="#lupa">Екранна лупа</a>
-    <a href="#kb">Екранна клавіатура</a>
-    <a href="#tasks">Практичне завдання</a>
-    <a href="#quiz">Самоперевірка</a>
+    <a href="#keys">Як тиснути клавіші</a>
+    <a href="#find">Де шукати</a>
+    <a href="#lupa">Лупа</a>
+    <a href="#kb">Клавіатура</a>
+    <a href="#tasks">Завдання</a>
+    <a href="#quiz">Тест</a>
     <a href="#report">Звіт</a>
-    <span class="progress" id="progress">Виконано: 0 / 0</span>
-    <button class="theme-btn" id="themeBtn" aria-label="Змінити тему">🌓</button>
+    <span class="progress" id="progress">✔ 0 / 0</span>
+    <button class="theme-btn" id="themeBtn" aria-label="Світла або темна тема">🌓</button>
   </div>
 </nav>
 
@@ -149,313 +205,276 @@ footer{padding:40px 0;color:var(--muted);font-size:14px;text-align:center}
 
 <!-- ВСТУП -->
 <section id="intro">
-  <h2><span class="num">1</span>Що таке спеціальні можливості</h2>
-  <p><b>Спеціальні можливості</b> — це вбудовані інструменти Windows, які роблять комп’ютер зручним для людей з порушеннями зору, слуху, моторики, а також для всіх, кому потрібна додаткова допомога: наприклад, якщо дрібний текст погано видно або фізична клавіатура зламалася.</p>
-  <div class="card">
-    <h3>Мета роботи</h3>
-    <ul>
-      <li>навчитися знаходити розділ <b>«Спеціальні можливості»</b> у Windows 11;</li>
-      <li>опанувати <b>екранну лупу</b>: увімкнення, режими, масштабування, інвертування кольорів;</li>
-      <li>опанувати <b>екранну клавіатуру</b>: введення тексту мишею, клавіші-модифікатори, параметри;</li>
-      <li>оцінити, кому і в яких ситуаціях ці інструменти стануть у пригоді.</li>
-    </ul>
+  <h2><span class="num">👋</span>Про що цей урок</h2>
+  <div class="card big">
+    <p>У Windows є <b>спеціальні можливості</b>. Це помічники, які роблять комп’ютер зручним для всіх: для тих, хто погано бачить, і для тих, кому важко друкувати.</p>
+    <p>Ми вивчимо двох помічників:</p>
+    <p>🔍 <b>Екранна лупа</b> робить усе на екрані більшим.<br>
+       ⌨️ <b>Екранна клавіатура</b> — це клавіатура на екрані. Натискаєш на букви мишкою.</p>
   </div>
-  <div class="note warn"><b>⚠ Перед початком</b>Назви пунктів меню можуть трохи відрізнятися залежно від версії Windows 11 та мовного пакета. Якщо не знаходите потрібний пункт — скористайтеся пошуком у меню «Пуск».</div>
+  <div class="box warn"><span class="ico">⚠️</span><div><b class="t">Не хвилюйся!</b>Назви в меню можуть трохи відрізнятися. Якщо щось не знаходиш, скористайся пошуком або спитай учителя.</div></div>
 </section>
 
-<!-- ДЕ ЗНАЙТИ -->
-<section id="find">
-  <h2><span class="num">2</span>Де знайти спеціальні можливості</h2>
-
-  <div class="card">
-    <h3>Спосіб 1. Через «Параметри»</h3>
+<!-- ЯК ТИСНУТИ КЛАВІШІ -->
+<section id="keys">
+  <h2><span class="num">1</span>Як натискати кілька клавіш разом</h2>
+  <div class="card big">
+    <p>Часто ти побачиш такий запис: <kbd>Ctrl</kbd> + <kbd>C</kbd>.</p>
+    <p>Знак <b>+</b> означає <b>«разом»</b>. <b>Не треба</b> натискати клавішу з плюсом!</p>
     <ol class="steps">
-      <li>Натисніть кнопку <b>«Пуск»</b> і виберіть <b>«Параметри»</b> (значок шестерні) або натисніть <kbd>Win</kbd> + <kbd>I</kbd>.</li>
-      <li>У лівому меню виберіть <b>«Спеціальні можливості»</b>.</li>
-      <li>Праворуч ви побачите групи: <b>«Зір»</b> (тут екранна лупа) та <b>«Взаємодія»</b> (тут клавіатура).</li>
+      <li><b>Затисни</b> першу клавішу і <b>тримай</b> її.</li>
+      <li>Не відпускаючи, <b>коротко натисни</b> наступну.</li>
+      <li><b>Відпусти</b> всі клавіші.</li>
     </ol>
-    <div class="path"><span>Пуск</span><i>→</i><span>Параметри</span><i>→</i><span>Спеціальні можливості</span></div>
+    <p>Подивись, як це виглядає. Клавіші натискаються самі, по черзі:</p>
+  </div>
+
+  <div class="combo" data-keys="Ctrl|C" data-title="Приклад: скопіювати" data-map="1"></div>
+
+  <div class="card">
+    <h3>Де ця загадкова клавіша Win?</h3>
+    <p>На ній намальовано <b>чотири віконця</b> <kbd data-win></kbd>. Вона знизу зліва, між <kbd>Ctrl</kbd> і <kbd>Alt</kbd>.</p>
+    <div class="kb" id="winMap"></div>
+    <div class="kb-legend">На малюнку клавіатури клавіша Win підсвічена</div>
+  </div>
+
+  <div class="box tip"><span class="ico">💡</span><div><b class="t">Підказка для лівої руки</b>Мізинцем тримай <kbd>Ctrl</kbd>, безіменним пальцем <kbd data-win></kbd>, великим пальцем <kbd>Alt</kbd>. Правою рукою натискай останню клавішу.</div></div>
+
+  <div class="card">
+    <h3>🎮 Тренажер</h3>
+    <p>Клацни на цю рамку, а потім натисни на <b>своїй</b> клавіатурі <kbd>Ctrl</kbd>, <kbd>Alt</kbd>, <kbd>Shift</kbd> або будь-яку букву. Натиснуті клавіші засвітяться!</p>
+    <div class="card" id="trainer" tabindex="0" style="margin:0;cursor:pointer;outline-offset:4px">
+      <div class="trainer-out" id="trainerOut">👆 Клацни сюди і натискай клавіші</div>
+      <div class="kb" id="trainerMap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ДЕ ШУКАТИ -->
+<section id="find">
+  <h2><span class="num">2</span>Де шукати спеціальні можливості</h2>
+
+  <div class="card">
+    <h3>Спосіб 1. Найшвидший</h3>
+    <p>Натисни разом:</p>
+  </div>
+  <div class="combo" data-keys="Win|U" data-title="Відкрити спеціальні можливості" data-map="1"></div>
+
+  <div class="card">
+    <h3>Спосіб 2. Через меню</h3>
+    <ol class="steps">
+      <li>Натисни кнопку <b>«Пуск»</b> <kbd data-win></kbd> внизу екрана.</li>
+      <li>Вибери <b>«Параметри»</b> ⚙️ (шестерня).</li>
+      <li>Зліва вибери <b>«Спеціальні можливості»</b>.</li>
+    </ol>
+    <div class="path"><span>Пуск</span><i>→</i><span>Параметри ⚙️</span><i>→</i><span>Спеціальні можливості</span></div>
   </div>
 
   <div class="card">
-    <h3>Спосіб 2. Сполучення клавіш</h3>
-    <p><kbd>Win</kbd> + <kbd>U</kbd> — одразу відкриває розділ «Спеціальні можливості» у Параметрах.</p>
+    <h3>Спосіб 3. Через пошук</h3>
+    <p>Натисни <kbd data-win></kbd> і почни писати: <b>лупа</b> або <b>екранна клавіатура</b>. Потім клацни на те, що знайшлося.</p>
   </div>
-
-  <div class="card">
-    <h3>Спосіб 3. Швидкі налаштування</h3>
-    <p>Натисніть <kbd>Win</kbd> + <kbd>A</kbd> (або клацніть значки мережі/звуку в правому нижньому куті). Знайдіть плитку <b>«Спеціальні можливості»</b> — там є перемикачі для лупи та інших функцій. Якщо плитки немає, натисніть олівець ✏ → <b>«Додати»</b>.</p>
-  </div>
-
-  <div class="card">
-    <h3>Спосіб 4. Пошук у меню «Пуск»</h3>
-    <p>Натисніть <kbd>Win</kbd> і почніть вводити: <b>«екранна лупа»</b> або <b>«екранна клавіатура»</b>. Також працює англійською: <code>magnifier</code>, <code>osk</code>.</p>
-  </div>
-
-  <div class="note tip"><b>💡 Лайфхак</b>На екрані входу до Windows (де вводять пароль) у правому нижньому куті є значок спеціальних можливостей. Звідти теж можна увімкнути лупу чи екранну клавіатуру — навіть до входу в систему.</div>
 </section>
 
 <!-- ЛУПА -->
 <section id="lupa">
-  <h2><span class="num">3</span>Екранна лупа</h2>
-  <p><b>Екранна лупа</b> збільшує частину екрана або весь екран, щоб краще бачити текст і зображення. Корисна людям зі слабким зором, а також під час презентацій, коли треба показати дрібну деталь.</p>
-
-  <div class="card">
-    <h3>Як увімкнути та вимкнути</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><th>Дія</th><th>Клавіші</th></tr>
-      <tr><td>Увімкнути лупу / збільшити</td><td><kbd>Win</kbd> + <kbd>+</kbd></td></tr>
-      <tr><td>Зменшити</td><td><kbd>Win</kbd> + <kbd>−</kbd></td></tr>
-      <tr><td>Вимкнути лупу</td><td><kbd>Win</kbd> + <kbd>Esc</kbd></td></tr>
-      <tr><td>Змінити масштаб коліщатком миші</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + коліщатко</td></tr>
-      <tr><td>Відкрити налаштування лупи</td><td><kbd>Win</kbd> + <kbd>Ctrl</kbd> + <kbd>M</kbd></td></tr>
-    </table></div>
-    <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Екранна лупа</span></div>
-    <p>Тут є перемикач <b>«Екранна лупа»</b> (вмикає/вимикає її), а також усі налаштування, описані нижче.</p>
+  <h2><span class="num">3</span>🔍 Екранна лупа</h2>
+  <div class="card big">
+    <p><b>Що це?</b> Збільшувальне скло для екрана.</p>
+    <p><b>Кому допомагає?</b> Людям, які погано бачать. А ще тим, хто хоче показати дрібну деталь усьому класу.</p>
   </div>
 
-  <h3>Три режими подання</h3>
+  <div class="combo" data-keys="Win|+" data-title="Увімкнути лупу і збільшити" data-map="1"></div>
+  <div class="box info"><span class="ico">🔎</span><div>Клавіша <b>+</b> — справа вгорі, біля <b>Backspace</b>. На ній написано <b>+</b> і <b>=</b>. Можна натиснути й <b>+</b> на цифровому блоці справа.</div></div>
+
+  <div class="combo" data-keys="Win|−" data-title="Зменшити" data-map="1"></div>
+  <div class="combo" data-keys="Win|Esc" data-title="Вимкнути лупу" data-map="1"></div>
+
+  <div class="card">
+    <h3>Змінювати розмір мишкою</h3>
+    <p>Затисни <kbd>Ctrl</kbd> і <kbd>Alt</kbd> та крути <b>коліщатко мишки</b> 🖱️. Від себе — більше, до себе — менше.</p>
+  </div>
+  <div class="combo" data-keys="Ctrl|Alt|🖱️" data-title="Масштаб коліщатком"></div>
+
+  <h3 style="font-size:23px;margin-top:30px">Три способи дивитися через лупу</h3>
   <div class="modes">
     <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="10" y="10" width="140" height="80" rx="4" fill="#2f5bd3" opacity=".22"/><text x="80" y="60" font-size="30" text-anchor="middle" fill="currentColor" font-weight="700">Aa</text></svg>
-      <h4>Повноекранний</h4>
-      <p>Збільшується весь екран. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd></p>
+      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="10" y="10" width="140" height="80" rx="4" fill="#2f6bff" opacity=".22"/><text x="80" y="62" font-size="32" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text></svg>
+      <h4>1. Весь екран</h4>
+      <p>Збільшується <b>увесь</b> екран.</p>
     </div>
     <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><g opacity=".35" fill="currentColor"><rect x="12" y="14" width="90" height="5" rx="2"/><rect x="12" y="26" width="120" height="5" rx="2"/><rect x="12" y="38" width="70" height="5" rx="2"/><rect x="12" y="74" width="100" height="5" rx="2"/></g><rect x="60" y="36" width="80" height="44" rx="6" fill="#6b46c1" opacity=".25" stroke="#6b46c1" stroke-width="2"/><text x="100" y="65" font-size="18" text-anchor="middle" fill="currentColor" font-weight="700">Aa</text></svg>
-      <h4>Лупа</h4>
-      <p>Збільшувальне скло рухається за мишею. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd></p>
+      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><g opacity=".35" fill="currentColor"><rect x="12" y="14" width="90" height="5" rx="2"/><rect x="12" y="26" width="120" height="5" rx="2"/><rect x="12" y="38" width="70" height="5" rx="2"/><rect x="12" y="74" width="100" height="5" rx="2"/></g><rect x="60" y="36" width="80" height="44" rx="6" fill="#7a4de0" opacity=".25" stroke="#7a4de0" stroke-width="2"/><text x="100" y="66" font-size="19" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text></svg>
+      <h4>2. Лупа</h4>
+      <p>Маленьке віконце-лупа. Воно <b>ходить за мишкою</b>.</p>
     </div>
     <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="6" y="6" width="148" height="34" rx="4" fill="#1f9d61" opacity=".25" stroke="#1f9d61" stroke-width="2"/><text x="80" y="31" font-size="18" text-anchor="middle" fill="currentColor" font-weight="700">Aa</text><g opacity=".35" fill="currentColor"><rect x="12" y="52" width="90" height="5" rx="2"/><rect x="12" y="64" width="120" height="5" rx="2"/><rect x="12" y="76" width="70" height="5" rx="2"/></g></svg>
-      <h4>Закріплений</h4>
-      <p>Збільшене зображення — в окремій смузі вгорі. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd></p>
+      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="6" y="6" width="148" height="34" rx="4" fill="#17a066" opacity=".25" stroke="#17a066" stroke-width="2"/><text x="80" y="31" font-size="19" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text><g opacity=".35" fill="currentColor"><rect x="12" y="52" width="90" height="5" rx="2"/><rect x="12" y="64" width="120" height="5" rx="2"/><rect x="12" y="76" width="70" height="5" rx="2"/></g></svg>
+      <h4>3. Смужка зверху</h4>
+      <p>Збільшене зображення з’являється <b>у смужці вгорі</b>.</p>
     </div>
   </div>
-  <p>Перемикатися між режимами по колу: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd>. Режим також вибирається в налаштуваннях у полі <b>«Подання»</b>.</p>
+
+  <div class="combo" data-keys="Ctrl|Alt|F" data-title="1. Весь екран" data-map="1"></div>
+  <div class="combo" data-keys="Ctrl|Alt|L" data-title="2. Лупа" data-map="1"></div>
+  <div class="combo" data-keys="Ctrl|Alt|D" data-title="3. Смужка зверху" data-map="1"></div>
+
+  <div class="box fun"><span class="ico">🧠</span><div><b class="t">Як запам’ятати букви?</b><b>F</b> — Full (повний), <b>L</b> — Lens (лінза), <b>D</b> — Docked (закріплений).</div></div>
+
+  <h3 style="font-size:23px;margin-top:30px">Корисні фокуси лупи</h3>
+  <div class="combo" data-keys="Ctrl|Alt|I" data-title="Кольори навпаки: білий стає чорним" data-map="1"></div>
+  <p>Так легше читати людям, яким болить очам від яскравого білого екрана. Натисни ще раз, щоб повернути, як було.</p>
+  <div class="combo" data-keys="Ctrl|Alt|Enter" data-title="Лупа читає текст уголос 🔊" data-map="1"></div>
+  <p>Щоб зупинити читання, натисни ці клавіші ще раз. Не забудь увімкнути звук або навушники 🎧.</p>
 
   <div class="card">
-    <h3>Корисні налаштування лупи</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><th>Параметр</th><th>Що робить</th></tr>
-      <tr><td><b>Масштаб</b></td><td>Початковий рівень збільшення (100%, 200%, 400%…).</td></tr>
-      <tr><td><b>Кроки масштабування</b></td><td>На скільки відсотків змінюється масштаб за одне натискання (наприклад, 25% або 100%).</td></tr>
-      <tr><td><b>Запускати лупу після входу / до входу</b></td><td>Лупа вмикатиметься автоматично.</td></tr>
-      <tr><td><b>Згладжувати краї зображень і тексту</b></td><td>Збільшений текст виглядає рівнішим, без «сходинок».</td></tr>
-      <tr><td><b>Інвертувати кольори</b></td><td>Білий фон стає темним, текст — світлим. Сполучення: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td></tr>
-      <tr><td><b>Утримувати вказівник миші</b></td><td>Визначає, як лупа слідує за мишею: по центру екрана або біля країв.</td></tr>
-    </table></div>
+    <h3>⚙️ Налаштування лупи</h3>
+    <p>Тут можна вибрати, <b>наскільки</b> збільшувати і <b>на скільки</b> змінювати розмір за одне натискання.</p>
+    <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Екранна лупа</span></div>
   </div>
-
-  <div class="card">
-    <h3>Панель інструментів лупи</h3>
-    <p>Коли лупа увімкнена, з’являється невелике віконце з кнопками <b>−</b> і <b>+</b> (масштаб), списком <b>«Подання»</b>, кнопками <b>читання</b> ▶ та <b>параметрів</b> ⚙. Якщо панель зникла — клацніть на значку лупи (збільшувальне скло) на панелі завдань.</p>
-  </div>
-
-  <div class="note info"><b>🔊 Функція читання</b>Лупа вміє читати текст уголос. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Enter</kbd> — почати/зупинити читання; <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+клацання мишею — читати з місця, де клацнули. Увімкніть звук або навушники!</div>
+  <div class="combo" data-keys="Win|Ctrl|M" data-title="Відкрити налаштування лупи" data-map="1"></div>
 </section>
 
 <!-- КЛАВІАТУРА -->
 <section id="kb">
-  <h2><span class="num">4</span>Екранна клавіатура</h2>
-  <p><b>Екранна клавіатура</b> — це клавіатура на екрані, клавіші якої натискають мишею, пальцем (на сенсорному екрані) або іншим вказівним пристроєм. Потрібна людям, яким важко користуватися фізичною клавіатурою, а також якщо клавіатура зламана або відсутня.</p>
+  <h2><span class="num">4</span>⌨️ Екранна клавіатура</h2>
+  <div class="card big">
+    <p><b>Що це?</b> Клавіатура, намальована на екрані. Натискаєш на букви <b>мишкою</b> або пальцем, якщо екран сенсорний.</p>
+    <p><b>Кому допомагає?</b> Людям, яким важко натискати звичайні клавіші. А ще вона рятує, коли клавіатура зламалась 😅.</p>
+  </div>
+
+  <div class="combo" data-keys="Win|Ctrl|O" data-title="Увімкнути або вимкнути екранну клавіатуру" data-map="1"></div>
+  <div class="box info"><span class="ico">🔤</span><div>Тут <b>O</b> — англійська буква «О». На українській розкладці на цій клавіші буква <b>Щ</b>.</div></div>
 
   <div class="card">
-    <h3>Як увімкнути</h3>
-    <ol class="steps">
-      <li><b>Сполучення клавіш:</b> <kbd>Win</kbd> + <kbd>Ctrl</kbd> + <kbd>O</kbd> (латинська «O») — увімкнути або вимкнути.</li>
-      <li><b>Через Параметри:</b> увімкніть перемикач <b>«Екранна клавіатура»</b>.
-        <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Клавіатура</span><i>→</i><span>Екранна клавіатура</span></div></li>
-      <li><b>Через «Виконати»:</b> <kbd>Win</kbd> + <kbd>R</kbd>, введіть <code>osk</code> і натисніть <b>OK</b>.</li>
-      <li><b>Через пошук:</b> <kbd>Win</kbd> → введіть «екранна клавіатура».</li>
-    </ol>
+    <h3>Інший спосіб</h3>
+    <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Клавіатура</span><i>→</i><span>Екранна клавіатура: Увімк.</span></div>
+  </div>
+
+  <h3 style="font-size:23px;margin-top:30px">Як набрати велику літеру</h3>
+  <p class="big">На екранній клавіатурі клавіші натискаються <b>по черзі</b>, а не разом! Спочатку клацаєш мишкою <b>Shift</b>, потім букву.</p>
+  <div class="combo" data-keys="Shift|А" data-title="Велика буква «А»" data-mode="click"></div>
+  <div class="combo" data-keys="Ctrl|C" data-title="Скопіювати на екранній клавіатурі" data-mode="click"></div>
+  <div class="box tip"><span class="ico">💡</span><div>Після клацання <b>Shift</b> чи <b>Ctrl</b> кнопка світиться. Вона чекає, поки ти клацнеш наступну клавішу.</div></div>
+
+  <div class="card">
+    <h3>Особливі кнопки справа</h3>
+    <div class="osk-btns">
+      <div><b>Fn</b> показує клавіші F1–F12</div>
+      <div><b>Nav</b> додає клавіші Home, End та інші</div>
+      <div><b>Mv Up</b> / <b>Mv Dn</b> пересувають клавіатуру вгору чи вниз</div>
+      <div><b>Dock</b> прикріплює клавіатуру до низу екрана</div>
+      <div><b>Fade</b> робить клавіатуру прозорою, як привида 👻</div>
+      <div><b>Параметри</b> — налаштування</div>
+    </div>
   </div>
 
   <div class="card">
-    <h3>Службові кнопки справа</h3>
+    <h3>⚙️ Цікаві налаштування (кнопка «Параметри»)</h3>
     <div class="tbl-wrap"><table class="tbl">
-      <tr><th>Кнопка</th><th>Призначення</th></tr>
-      <tr><td><kbd>Fn</kbd></td><td>Показує функціональні клавіші F1–F12.</td></tr>
-      <tr><td><kbd>Nav</kbd></td><td>Показує/ховає клавіші навігації: Home, End, PgUp, PgDn, Insert.</td></tr>
-      <tr><td><kbd>Mv Up</kbd> / <kbd>Mv Dn</kbd></td><td>Переміщують клавіатуру вгору або вниз екрана.</td></tr>
-      <tr><td><kbd>Dock</kbd></td><td>Закріплює клавіатуру внизу екрана.</td></tr>
-      <tr><td><kbd>Fade</kbd></td><td>Робить клавіатуру напівпрозорою, щоб бачити, що під нею.</td></tr>
-      <tr><td><kbd>Параметри</kbd> (Options)</td><td>Відкриває вікно налаштувань (див. нижче).</td></tr>
+      <tr><td>🔊 <b>Звук натискання</b></td><td>Клавіші клацають</td></tr>
+      <tr><td>🔢 <b>Цифрова клавіатура</b></td><td>З’являються цифри справа</td></tr>
+      <tr><td>👆 <b>Наведення на клавіші</b></td><td>Не треба клацати! Тримаєш мишку над буквою, і вона сама вводиться</td></tr>
+      <tr><td>💬 <b>Передбачення тексту</b></td><td>Клавіатура підказує слова, як у телефоні</td></tr>
     </table></div>
   </div>
 
-  <div class="card">
-    <h3>Клавіші-модифікатори</h3>
-    <p>Щоб набрати велику літеру або сполучення клавіш, клацніть модифікатор, а потім — потрібну клавішу. Наприклад, <b>копіювання</b>: клацніть <kbd>Ctrl</kbd>, потім <kbd>C</kbd>. Модифікатор підсвічується, доки не натиснута наступна клавіша.</p>
-    <p>Мова вводу перемикається так само, як на звичайній клавіатурі: <kbd>Alt</kbd> + <kbd>Shift</kbd> (клацнути по черзі) або через значок мови на панелі завдань.</p>
-  </div>
-
-  <div class="card">
-    <h3>Вікно «Параметри»</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><th>Параметр</th><th>Що робить</th></tr>
-      <tr><td><b>Звукове підтвердження</b></td><td>Клацання при кожному натисканні клавіші.</td></tr>
-      <tr><td><b>Увімкнути цифрову клавіатуру</b></td><td>Додає цифровий блок справа (кнопка <kbd>NumLock</kbd>).</td></tr>
-      <tr><td><b>Натискання клавіш</b></td><td>Звичайний режим: клавіша спрацьовує після клацання.</td></tr>
-      <tr><td><b>Наведення на клавіші</b></td><td>Клавіша спрацьовує, якщо затримати на ній вказівник певний час (без клацання). Для людей, яким важко натискати кнопку миші.</td></tr>
-      <tr><td><b>Сканування клавіш</b></td><td>Клавіатура по черзі підсвічує рядки та клавіші; вибір — однією клавішею/кнопкою (наприклад, пробілом).</td></tr>
-      <tr><td><b>Передбачення тексту</b></td><td>Пропонує слова, поки ви вводите, — друкувати швидше.</td></tr>
-    </table></div>
-  </div>
-
-  <div class="note tip"><b>🔐 Навіщо це для безпеки?</b>Екранна клавіатура ускладнює роботу апаратних кейлогерів (пристроїв, що записують натискання фізичних клавіш). Тому деякі банківські сайти пропонують вводити пароль саме з екранної клавіатури.</div>
+  <div class="box fun"><span class="ico">🔐</span><div><b class="t">Цікавий факт</b>Деякі сайти банків просять вводити пароль саме екранною клавіатурою. Так шпигунським програмам важче «підглянути», що ти натискаєш.</div></div>
 </section>
 
 <!-- ЗАВДАННЯ -->
 <section id="tasks">
   <h2><span class="num">5</span>Практичне завдання</h2>
-  <p>Виконуйте завдання по черзі та позначайте виконані. Прогрес зберігається у вашому браузері. Там, де є 📸, зробіть скриншот для звіту: <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>.</p>
+  <div class="card big">
+    <p>Виконуй завдання по черзі. Коли закінчиш одне, постав ✔ у квадратику.</p>
+    <p>Побачиш <span class="shot">📸 скриншот</span>, значить, треба сфотографувати екран. Ось як:</p>
+  </div>
+  <div class="combo" data-keys="Win|Shift|S" data-title="📸 Зробити скриншот" data-map="1"></div>
+  <p>Потім виділи мишкою потрібну частину екрана. Картинка скопіюється, і її можна вставити у звіт: <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
+
+  <div class="box info"><span class="ico">⏱️</span><div><b class="t">Усього 3 завдання, приблизно 20 хвилин</b>Кожне завдання займе 5–7 хвилин.</div></div>
 
   <div class="task" data-id="t1">
-    <div class="task-head"><input type="checkbox" id="t1"><label for="t1">Завдання 1. Знайдіть спеціальні можливості</label></div>
-    <div class="body"><ul>
-      <li>Відкрийте розділ «Спеціальні можливості» <b>трьома різними способами</b> (Параметри, <kbd>Win</kbd>+<kbd>U</kbd>, пошук).</li>
-      <li>Запишіть назви всіх пунктів у групах «Зір» і «Взаємодія».</li>
-      <li>📸 Скриншот розділу «Спеціальні можливості».</li>
-    </ul></div>
+    <div class="task-head"><input type="checkbox" id="t1"><label for="t1">Завдання 1. Прочитай секрет 🔍 <span class="tag2 t-l">ЛУПА</span></label></div>
+    <div class="body">
+      <p>Тут дуже дрібний текст. Прочитай його через лупу!</p>
+      <div class="sample tiny">Секрет: «Я вмію користуватися лупою!» Число: 4719.</div>
+      <ol>
+        <li>Натисни <kbd data-win></kbd> + <kbd>+</kbd> кілька разів, поки текст не стане великим.</li>
+        <li><span class="shot">📸 скриншот</span></li>
+        <li>Перепиши секрет і число сюди:</li>
+      </ol>
+      <textarea class="try" data-save="t1text" placeholder="Напиши тут секрет і число…"></textarea>
+      <ol start="4"><li>Вимкни лупу: <kbd data-win></kbd> + <kbd>Esc</kbd>.</li></ol>
+    </div>
   </div>
 
   <div class="task" data-id="t2">
-    <div class="task-head"><input type="checkbox" id="t2"><label for="t2">Завдання 2. Увімкніть лупу та змініть масштаб <span class="badge b-lupa">ЛУПА</span></label></div>
-    <div class="body"><ul>
-      <li>Увімкніть лупу: <kbd>Win</kbd>+<kbd>+</kbd>.</li>
-      <li>Збільште масштаб до 300%, потім зменште до 150%. Зверніть увагу: на скільки змінюється масштаб за одне натискання?</li>
-      <li>Спробуйте змінювати масштаб за допомогою <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+коліщатко миші.</li>
-      <li>Прочитайте з лупою дрібний текст нижче та перепишіть його у поле:</li>
-    </ul>
-    <div class="sample tiny">Секретна фраза: «Доступність — це коли технології зручні для кожного». Кодове число: 4719.</div>
-    <textarea class="try" data-save="t2text" placeholder="Перепишіть сюди секретну фразу та кодове число…"></textarea>
+    <div class="task-head"><input type="checkbox" id="t2"><label for="t2">Завдання 2. Друкую мишкою ⌨️ <span class="tag2 t-k">КЛАВІАТУРА</span></label></div>
+    <div class="body">
+      <ol>
+        <li>Увімкни екранну клавіатуру: <kbd data-win></kbd> + <kbd>Ctrl</kbd> + <kbd>O</kbd>.</li>
+        <li>Клацни мишкою в поле нижче.</li>
+        <li>Надрукуй <b>мишкою</b> своє ім’я. Першу букву зроби великою: спочатку клацни <b>Shift</b>, потім букву.</li>
+      </ol>
+      <textarea class="try" data-save="t2text" placeholder="Друкуй тут мишкою…"></textarea>
+      <ol start="4"><li><span class="shot">📸 скриншот</span></li></ol>
     </div>
   </div>
 
   <div class="task" data-id="t3">
-    <div class="task-head"><input type="checkbox" id="t3"><label for="t3">Завдання 3. Дослідіть режими подання <span class="badge b-lupa">ЛУПА</span></label></div>
-    <div class="body"><ul>
-      <li>По черзі увімкніть режими: <b>повноекранний</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd>), <b>лупа</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>L</kbd>), <b>закріплений</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>).</li>
-      <li>У кожному режимі відкрийте Блокнот і наберіть одне речення.</li>
-      <li>Визначте, який режим найзручніший для: а) читання довгого тексту; б) роботи з малюнком; в) показу деталі на проєкторі.</li>
-      <li>📸 Скриншот режиму «Закріплений».</li>
-    </ul></div>
-  </div>
-
-  <div class="task" data-id="t4">
-    <div class="task-head"><input type="checkbox" id="t4"><label for="t4">Завдання 4. Налаштуйте лупу <span class="badge b-lupa">ЛУПА</span></label></div>
-    <div class="body"><ul>
-      <li>Відкрийте налаштування: <kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>M</kbd>.</li>
-      <li>Змініть <b>«Кроки масштабування»</b> на 25% і перевірте, як тепер змінюється масштаб.</li>
-      <li>Увімкніть <b>інвертування кольорів</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>). Як змінився вигляд цієї сторінки? Кому це може допомогти?</li>
-      <li>Спробуйте функцію <b>читання</b>: виділіть абзац цієї сторінки та натисніть <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Enter</kbd>.</li>
-      <li>📸 Скриншот сторінки налаштувань лупи.</li>
-      <li>Вимкніть інвертування та лупу (<kbd>Win</kbd>+<kbd>Esc</kbd>).</li>
-    </ul></div>
-  </div>
-
-  <div class="task" data-id="t5">
-    <div class="task-head"><input type="checkbox" id="t5"><label for="t5">Завдання 5. Введіть текст екранною клавіатурою <span class="badge b-kb">КЛАВІАТУРА</span></label></div>
-    <div class="body"><ul>
-      <li>Увімкніть екранну клавіатуру: <kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd>.</li>
-      <li><b>Не торкаючись фізичної клавіатури</b>, клацніть у поле нижче й наберіть українською: своє ім’я та прізвище, клас, а також речення «Я вчуся користуватися спеціальними можливостями Windows 11.»</li>
-      <li>Велику літеру вводьте через <kbd>Shift</kbd>, мову перемикайте через <kbd>Alt</kbd>+<kbd>Shift</kbd>.</li>
-    </ul>
-    <textarea class="try" data-save="t5text" placeholder="Вводьте тут лише екранною клавіатурою…"></textarea>
-    <ul><li>Засічіть час: скільки хвилин знадобилося? Порівняйте зі звичайною клавіатурою.</li></ul>
+    <div class="task-head"><input type="checkbox" id="t3"><label for="t3">Завдання 3. Обидва разом ⭐ <span class="tag2 t-l">ЛУПА</span><span class="tag2 t-k">КЛАВІАТУРА</span></label></div>
+    <div class="body">
+      <ol>
+        <li>Екранна клавіатура вже увімкнена. Увімкни ще й лупу: <kbd data-win></kbd> + <kbd>+</kbd>.</li>
+        <li>Надрукуй мишкою у поле: <b>я молодець</b></li>
+      </ol>
+      <textarea class="try" data-save="t3text" placeholder="я молодець"></textarea>
+      <ol start="3">
+        <li><span class="shot">📸 скриншот</span>, на якому видно лупу і клавіатуру.</li>
+        <li>Вимкни лупу <kbd data-win></kbd> + <kbd>Esc</kbd> і клавіатуру <kbd data-win></kbd> + <kbd>Ctrl</kbd> + <kbd>O</kbd>.</li>
+      </ol>
     </div>
-  </div>
-
-  <div class="task" data-id="t6">
-    <div class="task-head"><input type="checkbox" id="t6"><label for="t6">Завдання 6. Сполучення клавіш на екранній клавіатурі <span class="badge b-kb">КЛАВІАТУРА</span></label></div>
-    <div class="body"><ul>
-      <li>У полі із завдання 5 виділіть увесь текст: <kbd>Ctrl</kbd> → <kbd>A</kbd>.</li>
-      <li>Скопіюйте: <kbd>Ctrl</kbd> → <kbd>C</kbd>. Відкрийте Блокнот і вставте: <kbd>Ctrl</kbd> → <kbd>V</kbd>.</li>
-      <li>Натисніть <kbd>Fn</kbd> та перегляньте функціональні клавіші. Натисніть <kbd>Nav</kbd> — які клавіші з’явилися?</li>
-      <li>Спробуйте <kbd>Fade</kbd>, <kbd>Mv Up</kbd>, <kbd>Dock</kbd>. Опишіть, що робить кожна.</li>
-    </ul></div>
-  </div>
-
-  <div class="task" data-id="t7">
-    <div class="task-head"><input type="checkbox" id="t7"><label for="t7">Завдання 7. Параметри екранної клавіатури <span class="badge b-kb">КЛАВІАТУРА</span></label></div>
-    <div class="body"><ul>
-      <li>Натисніть кнопку <b>«Параметри»</b> на екранній клавіатурі.</li>
-      <li>Увімкніть <b>«Передбачення тексту»</b> та наберіть слово «комп’ютер». Коли з’явилася підказка?</li>
-      <li>Увімкніть режим <b>«Наведення на клавіші»</b> і наберіть слово «привіт», не клацаючи мишею. Змініть тривалість наведення, якщо клавіші спрацьовують занадто швидко.</li>
-      <li>Увімкніть <b>цифрову клавіатуру</b> і наберіть число 2026.</li>
-      <li>📸 Скриншот вікна «Параметри» екранної клавіатури.</li>
-      <li>Поверніть режим <b>«Натискання клавіш»</b> та вимкніть клавіатуру.</li>
-    </ul></div>
-  </div>
-
-  <div class="task" data-id="t8">
-    <div class="task-head"><input type="checkbox" id="t8"><label for="t8">Завдання 8. Лупа + клавіатура разом <span class="badge b-lupa">ЛУПА</span><span class="badge b-kb">КЛАВІАТУРА</span></label></div>
-    <div class="body"><ul>
-      <li>Уявіть користувача, який погано бачить і не може користуватися фізичною клавіатурою.</li>
-      <li>Одночасно увімкніть лупу (режим «Лупа», 200%) та екранну клавіатуру.</li>
-      <li>Відкрийте браузер і знайдіть у пошуку «спеціальні можливості Windows», використовуючи тільки мишу та екранну клавіатуру.</li>
-      <li>📸 Скриншот з обома увімкненими інструментами.</li>
-    </ul></div>
   </div>
 </section>
 
-<!-- САМОПЕРЕВІРКА -->
+<!-- ТЕСТ -->
 <section id="quiz">
-  <h2><span class="num">6</span>Самоперевірка</h2>
+  <h2><span class="num">6</span>Перевір себе</h2>
   <div class="card quiz" id="quizBox"></div>
-  <button class="main" id="checkQuiz">Перевірити</button><span id="score" aria-live="polite"></span>
+  <button class="main" id="checkQuiz">Перевірити ✔</button><span id="score" aria-live="polite"></span>
 </section>
 
 <!-- ЗВІТ -->
 <section id="report">
-  <h2><span class="num">7</span>Звіт про виконання</h2>
-  <div class="card">
-    <p>Підготуйте звіт у <b>Google Документах</b> або <b>Google Презентаціях</b> і надайте доступ учителю. У звіті мають бути:</p>
-    <ol>
-      <li>Титульна сторінка: тема, прізвище та ім’я, клас, дата.</li>
-      <li>Шляхи до екранної лупи та екранної клавіатури (як їх знайти й увімкнути).</li>
-      <li>Усі скриншоти з позначкою 📸 з короткими підписами.</li>
-      <li>Відповіді на запитання із завдань 2, 3, 5, 6 і 7.</li>
-      <li>Таблиця сполучень клавіш, які ви використовували.</li>
-      <li><b>Висновки</b> (5–7 речень): кому і в яких ситуаціях допоможуть лупа та екранна клавіатура; що було зручно, а що — складно.</li>
+  <h2><span class="num">7</span>Звіт для вчителя</h2>
+  <div class="card big">
+    <p>Надішли вчителю:</p>
+    <ol class="steps">
+      <li>Свої <b>3 скриншоти</b> <span class="shot">📸</span>.</li>
+      <li><b>Одне речення:</b> кому допоможуть лупа й екранна клавіатура?</li>
     </ol>
   </div>
 
   <div class="card">
-    <h3>Критерії оцінювання</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><th>Критерій</th><th>Бали</th></tr>
-      <tr><td>Знайдено спеціальні можливості різними способами (завд. 1)</td><td>1</td></tr>
-      <tr><td>Екранна лупа: масштаб, режими, налаштування (завд. 2–4)</td><td>3</td></tr>
-      <tr><td>Екранна клавіатура: введення, сполучення, параметри (завд. 5–7)</td><td>3</td></tr>
-      <tr><td>Комбіноване завдання (завд. 8)</td><td>1</td></tr>
-      <tr><td>Повнота звіту, скриншоти, висновки</td><td>4</td></tr>
-      <tr><td><b>Разом</b></td><td><b>12</b></td></tr>
-    </table></div>
-  </div>
-
-  <div class="card">
-    <h3>Шпаргалка сполучень клавіш</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><td><kbd>Win</kbd>+<kbd>U</kbd></td><td>Спеціальні можливості</td></tr>
-      <tr><td><kbd>Win</kbd>+<kbd>+</kbd> / <kbd>Win</kbd>+<kbd>−</kbd></td><td>Лупа: збільшити / зменшити</td></tr>
-      <tr><td><kbd>Win</kbd>+<kbd>Esc</kbd></td><td>Вимкнути лупу</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd> / <kbd>L</kbd> / <kbd>D</kbd></td><td>Повноекранний / лупа / закріплений режим</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td><td>Інвертувати кольори</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Enter</kbd></td><td>Лупа: читати вголос</td></tr>
-      <tr><td><kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>M</kbd></td><td>Налаштування лупи</td></tr>
-      <tr><td><kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Екранна клавіатура</td></tr>
-      <tr><td><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Скриншот фрагмента екрана</td></tr>
+    <h3>📋 Шпаргалка</h3>
+    <div class="tbl-wrap"><table class="tbl cheat">
+      <tr><td><kbd data-win></kbd>+<kbd>U</kbd></td><td>Спеціальні можливості</td></tr>
+      <tr><td><kbd data-win></kbd>+<kbd>+</kbd></td><td>Лупа: увімкнути і збільшити</td></tr>
+      <tr><td><kbd data-win></kbd>+<kbd>−</kbd></td><td>Лупа: зменшити</td></tr>
+      <tr><td><kbd data-win></kbd>+<kbd>Esc</kbd></td><td>Лупа: вимкнути</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd> / <kbd>L</kbd> / <kbd>D</kbd></td><td>Весь екран / лупа / смужка зверху</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td><td>Кольори навпаки</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Enter</kbd></td><td>Читати вголос</td></tr>
+      <tr><td><kbd data-win></kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Екранна клавіатура</td></tr>
+      <tr><td><kbd data-win></kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Скриншот</td></tr>
     </table></div>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <div class="wrap">Практична робота «Спеціальні можливості Windows 11» · Продуктивність та безпека цифрового середовища</div>
-</footer>
+<footer><div class="wrap">Практична робота «Лупа і клавіатура на екрані» · Windows 11 · 8 клас</div></footer>
 
 <script>
 (function(){
@@ -463,82 +482,226 @@ footer{padding:40px 0;color:var(--muted);font-size:14px;text-align:center}
     get: function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
     set: function(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
   };
+  var WIN_SVG = '<svg viewBox="0 0 16 16" aria-label="Win"><rect x="1" y="1" width="6.5" height="6.5" fill="#1e88e5"/><rect x="8.5" y="1" width="6.5" height="6.5" fill="#1e88e5"/><rect x="1" y="8.5" width="6.5" height="6.5" fill="#1e88e5"/><rect x="8.5" y="8.5" width="6.5" height="6.5" fill="#1e88e5"/></svg>';
+  var COLORS = ['#2f6bff','#7a4de0','#e37400'];
 
-  // Тема
-  var root = document.documentElement;
-  var saved = store.get('a11y-theme');
-  if (saved) root.setAttribute('data-theme', saved);
-  document.getElementById('themeBtn').addEventListener('click', function(){
-    var cur = root.getAttribute('data-theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = cur === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    store.set('a11y-theme', next);
+  // Значок Win у дрібних клавішах
+  document.querySelectorAll('kbd[data-win]').forEach(function(k){ k.innerHTML = WIN_SVG + 'Win'; });
+
+  // ---- Розкладка клавіатури ----
+  var CY = {Q:'Й',W:'Ц',E:'У',R:'К',T:'Е',Y:'Н',U:'Г',I:'Ш',O:'Щ',P:'З',A:'Ф',S:'І',D:'В',F:'А',G:'П',H:'Р',J:'О',K:'Л',L:'Д',Z:'Я',X:'Ч',C:'С',V:'М',B:'И',N:'Т',M:'Ь'};
+  function L(ch){ return ['Key'+ch, ch, 1]; }
+  var ROWS = [
+    [['Escape','Esc',1],['_',' ',.5],['F1','F1',1],['F2','F2',1],['F3','F3',1],['F4','F4',1],['_',' ',.5],['F5','F5',1],['F6','F6',1],['F7','F7',1],['F8','F8',1],['_',' ',.5],['F9','F9',1],['F10','F10',1],['F11','F11',1],['F12','F12',1],['_',' ',.5]],
+    [['Backquote','`',1],['Digit1','1',1],['Digit2','2',1],['Digit3','3',1],['Digit4','4',1],['Digit5','5',1],['Digit6','6',1],['Digit7','7',1],['Digit8','8',1],['Digit9','9',1],['Digit0','0',1],['Minus','−',1],['Equal','+ =',1],['Backspace','⌫',2]],
+    [['Tab','Tab',1.5]].concat('QWERTYUIOP'.split('').map(L)).concat([['BracketLeft','[',1],['BracketRight',']',1],['Backslash','\\',1.5]]),
+    [['CapsLock','Caps',1.75]].concat('ASDFGHJKL'.split('').map(L)).concat([['Semicolon',';',1],['Quote',"'",1],['Enter','Enter',2.25]]),
+    [['ShiftLeft','Shift',2.25]].concat('ZXCVBNM'.split('').map(L)).concat([['Comma',',',1],['Period','.',1],['Slash','/',1],['ShiftRight','Shift',2.75]]),
+    [['ControlLeft','Ctrl',1.25],['MetaLeft','WIN',1.25],['AltLeft','Alt',1.25],['Space','Пробіл',6.25],['AltRight','Alt',1.25],['MetaRight','WIN',1.25],['ContextMenu','☰',1.25],['ControlRight','Ctrl',1.25]]
+  ];
+  function buildKb(el){
+    el.innerHTML = '';
+    ROWS.forEach(function(row, ri){
+      var r = document.createElement('div'); r.className = 'row';
+      row.forEach(function(k){
+        var d = document.createElement('div');
+        d.className = 'k' + (k[0]==='_' ? ' sp' : '') + (ri===0 ? ' fn' : '');
+        d.style.flexGrow = k[2];
+        d.dataset.code = k[0];
+        if (k[1]==='WIN') d.innerHTML = WIN_SVG;
+        else {
+          d.textContent = k[1];
+          var ch = k[0].indexOf('Key')===0 ? k[0].slice(3) : '';
+          if (CY[ch]) { var s=document.createElement('span'); s.className='cy'; s.textContent=CY[ch]; d.appendChild(s); }
+        }
+        r.appendChild(d);
+      });
+      el.appendChild(r);
+    });
+  }
+  var NAME2CODE = {Win:'MetaLeft',Ctrl:'ControlLeft',Alt:'AltLeft',Shift:'ShiftLeft','+':'Equal','−':'Minus',Esc:'Escape',Enter:'Enter'};
+  function codeOf(n){ return NAME2CODE[n] || (n.length===1 && /[A-Z]/.test(n) ? 'Key'+n : null); }
+
+  // Карта клавіші Win
+  var wm = document.getElementById('winMap'); buildKb(wm);
+  wm.querySelectorAll('[data-code=MetaLeft],[data-code=MetaRight]').forEach(function(k){ k.style.setProperty('--c','#2f6bff'); k.classList.add('hl'); });
+
+  // ---- Анімовані комбінації ----
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var combos = [];
+  function capHTML(n){
+    if (n==='Win') return WIN_SVG;
+    if (n==='🖱️') return '🖱️';
+    return n;
+  }
+  function verb(n){ return n==='Win' ? 'Win' : n; }
+  document.querySelectorAll('.combo').forEach(function(box){
+    var keys = box.dataset.keys.split('|');
+    var click = box.dataset.mode === 'click';
+    var t = document.createElement('div'); t.className='combo-title';
+    t.innerHTML = '<span>' + box.dataset.title + '</span>';
+    var chip = document.createElement('span'); chip.className='what';
+    chip.textContent = click ? 'клацай мишкою по черзі' : keys.map(verb).join(' + ');
+    t.appendChild(chip); box.appendChild(t);
+
+    var caps = document.createElement('div'); caps.className='caps';
+    var capEls = [];
+    keys.forEach(function(k,i){
+      if (i>0){ var p=document.createElement('div'); p.className='plus'; p.textContent = click ? '→' : '+'; caps.appendChild(p); }
+      var w=document.createElement('div'); w.className='capwrap'; w.style.setProperty('--c', COLORS[i%3]);
+      var c=document.createElement('div'); c.className='cap' + (k.length>3 ? ' wide':''); c.style.setProperty('--c', COLORS[i%3]); c.innerHTML = capHTML(k);
+      var h=document.createElement('div'); h.className='hint';
+      var last = i===keys.length-1;
+      var txt = click ? (last ? 'потім клацни' : 'спочатку клацни')
+              : (k==='🖱️' ? 'крути коліщатко' : (last ? 'коротко натисни' : 'затисни і тримай'));
+      h.innerHTML = '<span class="n">'+(i+1)+'</span><br>' + txt;
+      w.appendChild(c); w.appendChild(h); caps.appendChild(w); capEls.push(c);
+    });
+    box.appendChild(caps);
+    var st = document.createElement('div'); st.className='status'; box.appendChild(st);
+
+    if (box.dataset.map){
+      var kb = document.createElement('div'); kb.className='kb'; buildKb(kb); box.appendChild(kb);
+      keys.forEach(function(k,i){
+        var code = codeOf(k); if(!code) return;
+        var el = kb.querySelector('[data-code="'+code+'"]'); if(!el) return;
+        el.style.setProperty('--c', COLORS[i%3]); el.classList.add('hl');
+        var b=document.createElement('span'); b.className='badge'; b.textContent=i+1; el.appendChild(b);
+      });
+      var lg=document.createElement('div'); lg.className='kb-legend'; lg.textContent='Де ці клавіші на клавіатурі (цифра показує порядок)'; box.appendChild(lg);
+    }
+
+    // кроки анімації
+    var steps = [];
+    steps.push({down:0, text:'👀 Дивись…'});
+    keys.forEach(function(k,i){
+      var last = i===keys.length-1;
+      var text;
+      if (click) text = '🖱️ Клацни «' + verb(k) + '»' + (i===0 ? '' : ' — готово!');
+      else if (k==='🖱️') text = '🖱️ …і крути коліщатко';
+      else if (i===0) text = '✋ Затисни ' + verb(k) + ' і тримай';
+      else if (!last) text = '✋ …тримай і затисни ' + verb(k);
+      else text = '👆 …і коротко натисни ' + verb(k);
+      steps.push({down:i+1, text:text, only: click ? i : -1});
+    });
+    steps.push({down:0, text: click ? '✅ Готово! Кнопки клацаються по черзі' : '✅ Відпусти всі клавіші. Готово!', ok:true});
+    steps.push({down:0, text: click ? '✅ Готово! Кнопки клацаються по черзі' : '✅ Відпусти всі клавіші. Готово!', ok:true});
+    var obj = {capEls:capEls, st:st, steps:steps, i:0, visible:false, click:click};
+    combos.push(obj);
+    render(obj, reduce ? null : 0);
   });
 
-  // Прогрес завдань
-  var tasks = document.querySelectorAll('.task');
-  var prog = document.getElementById('progress');
-  function update(){
-    var d = 0;
-    tasks.forEach(function(t){
-      var cb = t.querySelector('input[type=checkbox]');
-      t.classList.toggle('done', cb.checked);
-      if (cb.checked) d++;
+  function render(o, idx){
+    if (idx===null){ // без анімації
+      o.capEls.forEach(function(c){ c.classList.add('down'); });
+      o.st.textContent = o.click ? 'Клацай кнопки по черзі, як показують цифри' : 'Тримай перші клавіші, коротко натисни останню, відпусти';
+      return;
+    }
+    var s = o.steps[idx];
+    o.capEls.forEach(function(c,j){
+      var on = o.click ? (j===s.only) : (j < s.down);
+      c.classList.toggle('down', on);
     });
-    prog.textContent = 'Виконано: ' + d + ' / ' + tasks.length;
+    o.st.textContent = s.text;
+    o.st.classList.toggle('ok', !!s.ok);
+  }
+  if (!reduce){
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target._o.visible = e.isIntersecting; }); });
+      document.querySelectorAll('.combo').forEach(function(b,i){ b._o = combos[i]; io.observe(b); });
+    } else combos.forEach(function(o){ o.visible = true; });
+    setInterval(function(){
+      combos.forEach(function(o){ if(!o.visible) return; o.i = (o.i+1) % o.steps.length; render(o, o.i); });
+    }, 1100);
+  }
+
+  // ---- Тренажер ----
+  var tm = document.getElementById('trainerMap'); buildKb(tm);
+  var tr = document.getElementById('trainer'), out = document.getElementById('trainerOut');
+  var held = {};
+  function showHeld(){
+    var names = Object.keys(held).map(function(c){ return held[c]; });
+    out.innerHTML = names.length ? names.map(function(n){ return '<kbd>'+n+'</kbd>'; }).join(' + ') : '⌨️ Натискай клавіші…';
+  }
+  function nice(e){
+    var m = {Control:'Ctrl',Meta:'Win',' ':'Пробіл',Escape:'Esc',ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→'};
+    return m[e.key] || (e.key.length===1 ? e.key.toUpperCase() : e.key);
+  }
+  tr.addEventListener('keydown', function(e){
+    if (e.key==='Tab') return;
+    e.preventDefault();
+    held[e.code] = nice(e);
+    var k = tm.querySelector('[data-code="'+e.code+'"]');
+    if (k){ k.style.setProperty('--c','#17a066'); k.classList.add('hl'); }
+    showHeld();
+  });
+  tr.addEventListener('keyup', function(e){
+    delete held[e.code];
+    var k = tm.querySelector('[data-code="'+e.code+'"]'); if (k) k.classList.remove('hl');
+    showHeld();
+  });
+  tr.addEventListener('blur', function(){ held = {}; tm.querySelectorAll('.hl').forEach(function(k){k.classList.remove('hl');}); out.textContent='👆 Клацни сюди і натискай клавіші'; });
+  tr.addEventListener('focus', showHeld);
+
+  // ---- Тема ----
+  var root = document.documentElement;
+  var saved = store.get('a11y-theme'); if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store.set('a11y-theme', next);
+  });
+
+  // ---- Прогрес завдань ----
+  var tasks = document.querySelectorAll('.task'), prog = document.getElementById('progress');
+  function upd(){
+    var d=0; tasks.forEach(function(t){ var cb=t.querySelector('input'); t.classList.toggle('done',cb.checked); if(cb.checked)d++; });
+    prog.textContent = '✔ ' + d + ' / ' + tasks.length + (d===tasks.length ? ' 🎉' : '');
   }
   tasks.forEach(function(t){
-    var cb = t.querySelector('input[type=checkbox]');
-    var key = 'a11y-task-' + t.dataset.id;
-    cb.checked = store.get(key) === '1';
-    cb.addEventListener('change', function(){ store.set(key, cb.checked ? '1' : '0'); update(); });
+    var cb=t.querySelector('input'), key='a11y-task-'+t.dataset.id;
+    cb.checked = store.get(key)==='1';
+    cb.addEventListener('change', function(){ store.set(key, cb.checked?'1':'0'); upd(); });
   });
-  update();
-
-  // Збереження текстових полів
+  upd();
   document.querySelectorAll('textarea[data-save]').forEach(function(ta){
-    var key = 'a11y-' + ta.dataset.save;
-    ta.value = store.get(key) || '';
+    var key='a11y-'+ta.dataset.save; ta.value = store.get(key)||'';
     ta.addEventListener('input', function(){ store.set(key, ta.value); });
   });
 
-  // Тест
+  // ---- Тест ----
   var Q = [
-    {q:'Яке сполучення клавіш відкриває розділ «Спеціальні можливості»?', a:['Win + I','Win + U','Win + A','Ctrl + Alt + Del'], c:1},
-    {q:'Як увімкнути екранну лупу?', a:['Win + +','Win + L','Ctrl + +','Alt + Tab'], c:0},
-    {q:'Як швидко вимкнути екранну лупу?', a:['Win + −','Alt + F4','Win + Esc','Ctrl + Esc'], c:2},
-    {q:'У якому режимі збільшене зображення показується в окремій смузі вгорі екрана?', a:['Повноекранний','Лупа','Закріплений','Контрастний'], c:2},
-    {q:'Що робить сполучення Ctrl + Alt + I при увімкненій лупі?', a:['Відкриває налаштування','Інвертує кольори','Читає текст уголос','Збільшує масштаб'], c:1},
-    {q:'Як увімкнути екранну клавіатуру?', a:['Win + Ctrl + O','Win + K','Ctrl + Shift + K','Win + O'], c:0},
-    {q:'Яку команду ввести у вікні «Виконати» (Win + R), щоб запустити екранну клавіатуру?', a:['keyboard','osk','kbd','magnify'], c:1},
-    {q:'Який режим екранної клавіатури дозволяє вводити символи без клацання мишею?', a:['Натискання клавіш','Передбачення тексту','Наведення на клавіші','Fade'], c:2},
-    {q:'Для чого кнопка Fade на екранній клавіатурі?', a:['Вимикає клавіатуру','Робить клавіатуру напівпрозорою','Показує F1–F12','Закріплює клавіатуру внизу'], c:1},
-    {q:'Чому екранну клавіатуру іноді радять використовувати для введення паролів?', a:['Вона швидша','Вона захищає від апаратних кейлогерів','Вона автоматично запам’ятовує паролі','Вона шифрує інтернет'], c:1}
+    {q:'Що означає знак + у записі Ctrl + C?', a:['Треба натиснути клавішу з плюсом','Натиснути клавіші разом','Натиснути спочатку C, потім Ctrl'], c:1},
+    {q:'Як відкрити спеціальні можливості?', a:['Win + U','Win + L','Alt + U'], c:0},
+    {q:'Як увімкнути лупу?', a:['Ctrl + L','Win + +','Alt + +'], c:1},
+    {q:'Як вимкнути лупу?', a:['Win + Esc','Win + −','Ctrl + Esc'], c:0},
+    {q:'Який спосіб лупи показує збільшення у смужці вгорі?', a:['Весь екран','Лупа','Смужка зверху (Ctrl + Alt + D)'], c:2},
+    {q:'Що робить Ctrl + Alt + I?', a:['Вимикає комп’ютер','Змінює кольори навпаки','Відкриває інтернет'], c:1},
+    {q:'Як увімкнути екранну клавіатуру?', a:['Win + Ctrl + O','Win + K','Ctrl + Alt + K'], c:0},
+    {q:'Як набрати велику літеру на ЕКРАННІЙ клавіатурі?', a:['Клацнути Shift, потім букву','Двічі клацнути букву','Клацнути Enter'], c:0},
+    {q:'Кому допоможе екранна клавіатура?', a:['Тим, кому важко натискати звичайні клавіші','Тільки програмістам','Нікому'], c:0}
   ];
   var box = document.getElementById('quizBox');
-  Q.forEach(function(item, i){
-    var div = document.createElement('div'); div.className = 'q';
-    var p = document.createElement('p'); p.textContent = (i+1) + '. ' + item.q; div.appendChild(p);
-    item.a.forEach(function(ans, j){
-      var l = document.createElement('label');
-      var r = document.createElement('input'); r.type = 'radio'; r.name = 'q'+i; r.value = j;
-      l.appendChild(r); l.appendChild(document.createTextNode(ans));
-      div.appendChild(l);
+  Q.forEach(function(item,i){
+    var d=document.createElement('div'); d.className='q';
+    var p=document.createElement('p'); p.textContent=(i+1)+'. '+item.q; d.appendChild(p);
+    item.a.forEach(function(ans,j){
+      var l=document.createElement('label'), r=document.createElement('input');
+      r.type='radio'; r.name='q'+i; r.value=j; l.appendChild(r); l.appendChild(document.createTextNode(ans)); d.appendChild(l);
     });
-    box.appendChild(div);
+    box.appendChild(d);
   });
   document.getElementById('checkQuiz').addEventListener('click', function(){
-    var s = 0;
-    Q.forEach(function(item, i){
+    var s=0;
+    Q.forEach(function(item,i){
       box.querySelectorAll('input[name=q'+i+']').forEach(function(r){
-        var l = r.parentNode; l.classList.remove('ok','bad');
-        if (+r.value === item.c) l.classList.add('ok');
-        else if (r.checked) l.classList.add('bad');
-        if (r.checked && +r.value === item.c) s++;
+        var l=r.parentNode; l.classList.remove('ok','bad');
+        if(+r.value===item.c) l.classList.add('ok'); else if(r.checked) l.classList.add('bad');
+        if(r.checked && +r.value===item.c) s++;
       });
     });
-    document.getElementById('score').textContent = 'Результат: ' + s + ' / ' + Q.length;
+    var msg = s===Q.length ? ' 🏆 Супер!' : (s>=6 ? ' 👍 Молодець!' : ' 💪 Спробуй ще раз!');
+    document.getElementById('score').textContent = s + ' з ' + Q.length + msg;
   });
 })();
 </script>
