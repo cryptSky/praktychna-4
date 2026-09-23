@@ -174,6 +174,18 @@ button.main{background:var(--blue);color:#fff;border:0;border-radius:14px;paddin
 footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
 @media (max-width:560px){ body{font-size:17px} .card,.combo,.task{padding:14px} }
 @media print{nav.toc,.theme-btn{display:none}.hero{background:none;color:#000}}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:14px 0}
+.grid2 .combo{margin:0;padding:14px}
+.grid2 .cap{width:64px;height:58px;font-size:19px}.grid2 .cap.wide{width:74px}.grid2 .capwrap{width:74px}
+.grid2 .cap svg{width:22px;height:22px}.grid2 .hint{font-size:12px}.grid2 .status{font-size:15px}
+.grid2 .combo-title{font-size:18px}
+.hero p{font-weight:800}
+input.try1{width:100%;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);padding:10px 12px;font:18px Nunito,sans-serif}
+.q3{margin:12px 0 4px;font-weight:800}
+button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-radius:12px;padding:9px 18px;font:900 16px Nunito,sans-serif;cursor:pointer}
+.res{font-weight:800;display:inline-block;margin-top:8px}
+.res.ok{color:var(--green)}.res.bad{color:var(--orange)}
 </style>
 </head>
 <body>
@@ -181,21 +193,18 @@ footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
 <header class="hero">
   <div class="wrap">
     <div class="icons">🔍 ⌨️</div>
-    <span class="tag">Практична робота · 8 клас · 20 хвилин</span>
     <h1>Лупа і клавіатура на екрані</h1>
-    <p>Сьогодні ти навчишся збільшувати все на екрані, як через збільшувальне скло, і друкувати мишкою без звичайної клавіатури.</p>
+    <p>Windows 11 · 8 клас · 20 хвилин · 3 завдання</p>
   </div>
 </header>
 
 <nav class="toc" aria-label="Зміст">
   <div class="wrap">
-    <a href="#keys">Як тиснути клавіші</a>
-    <a href="#find">Де шукати</a>
+    <a href="#keys">Клавіші</a>
     <a href="#lupa">Лупа</a>
     <a href="#kb">Клавіатура</a>
     <a href="#tasks">Завдання</a>
     <a href="#quiz">Тест</a>
-    <a href="#report">Звіт</a>
     <span class="progress" id="progress">✔ 0 / 0</span>
     <button class="theme-btn" id="themeBtn" aria-label="Світла або темна тема">🌓</button>
   </div>
@@ -203,278 +212,109 @@ footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
 
 <main class="wrap">
 
-<!-- ВСТУП -->
-<section id="intro">
-  <h2><span class="num">👋</span>Про що цей урок</h2>
-  <div class="card big">
-    <p>У Windows є <b>спеціальні можливості</b>. Це помічники, які роблять комп’ютер зручним для всіх: для тих, хто погано бачить, і для тих, кому важко друкувати.</p>
-    <p>Ми вивчимо двох помічників:</p>
-    <p>🔍 <b>Екранна лупа</b> робить усе на екрані більшим.<br>
-       ⌨️ <b>Екранна клавіатура</b> — це клавіатура на екрані. Натискаєш на букви мишкою.</p>
-  </div>
-  <div class="box warn"><span class="ico">⚠️</span><div><b class="t">Не хвилюйся!</b>Назви в меню можуть трохи відрізнятися. Якщо щось не знаходиш, скористайся пошуком або спитай учителя.</div></div>
-</section>
-
-<!-- ЯК ТИСНУТИ КЛАВІШІ -->
 <section id="keys">
-  <h2><span class="num">1</span>Як натискати кілька клавіш разом</h2>
-  <div class="card big">
-    <p>Часто ти побачиш такий запис: <kbd>Ctrl</kbd> + <kbd>C</kbd>.</p>
-    <p>Знак <b>+</b> означає <b>«разом»</b>. <b>Не треба</b> натискати клавішу з плюсом!</p>
-    <ol class="steps">
-      <li><b>Затисни</b> першу клавішу і <b>тримай</b> її.</li>
-      <li>Не відпускаючи, <b>коротко натисни</b> наступну.</li>
-      <li><b>Відпусти</b> всі клавіші.</li>
-    </ol>
-    <p>Подивись, як це виглядає. Клавіші натискаються самі, по черзі:</p>
-  </div>
-
-  <div class="combo" data-keys="Ctrl|C" data-title="Приклад: скопіювати" data-map="1"></div>
-
-  <div class="card">
-    <h3>Де ця загадкова клавіша Win?</h3>
-    <p>На ній намальовано <b>чотири віконця</b> <kbd data-win></kbd>. Вона знизу зліва, між <kbd>Ctrl</kbd> і <kbd>Alt</kbd>.</p>
-    <div class="kb" id="winMap"></div>
-    <div class="kb-legend">На малюнку клавіатури клавіша Win підсвічена</div>
-  </div>
-
-  <div class="box tip"><span class="ico">💡</span><div><b class="t">Підказка для лівої руки</b>Мізинцем тримай <kbd>Ctrl</kbd>, безіменним пальцем <kbd data-win></kbd>, великим пальцем <kbd>Alt</kbd>. Правою рукою натискай останню клавішу.</div></div>
-
-  <div class="card">
-    <h3>🎮 Тренажер</h3>
-    <p>Клацни на цю рамку, а потім натисни на <b>своїй</b> клавіатурі <kbd>Ctrl</kbd>, <kbd>Alt</kbd>, <kbd>Shift</kbd> або будь-яку букву. Натиснуті клавіші засвітяться!</p>
-    <div class="card" id="trainer" tabindex="0" style="margin:0;cursor:pointer;outline-offset:4px">
-      <div class="trainer-out" id="trainerOut">👆 Клацни сюди і натискай клавіші</div>
-      <div class="kb" id="trainerMap"></div>
-    </div>
+  <h2><span class="num">1</span>Як тиснути клавіші</h2>
+  <p class="big"><b>+</b> означає <b>разом</b>: затисни першу, натисни другу, відпусти.</p>
+  <div class="combo" data-keys="Ctrl|C" data-title="Приклад" data-map="1"></div>
+  <p><kbd data-win></kbd> — клавіша з віконцями, знизу зліва.</p>
+  <div class="card" id="trainer" tabindex="0" style="cursor:pointer">
+    <div class="trainer-out" id="trainerOut">🎮 Клацни сюди і натискай клавіші</div>
+    <div class="kb" id="trainerMap"></div>
   </div>
 </section>
 
-<!-- ДЕ ШУКАТИ -->
-<section id="find">
-  <h2><span class="num">2</span>Де шукати спеціальні можливості</h2>
-
-  <div class="card">
-    <h3>Спосіб 1. Найшвидший</h3>
-    <p>Натисни разом:</p>
-  </div>
-  <div class="combo" data-keys="Win|U" data-title="Відкрити спеціальні можливості" data-map="1"></div>
-
-  <div class="card">
-    <h3>Спосіб 2. Через меню</h3>
-    <ol class="steps">
-      <li>Натисни кнопку <b>«Пуск»</b> <kbd data-win></kbd> внизу екрана.</li>
-      <li>Вибери <b>«Параметри»</b> ⚙️ (шестерня).</li>
-      <li>Зліва вибери <b>«Спеціальні можливості»</b>.</li>
-    </ol>
-    <div class="path"><span>Пуск</span><i>→</i><span>Параметри ⚙️</span><i>→</i><span>Спеціальні можливості</span></div>
-  </div>
-
-  <div class="card">
-    <h3>Спосіб 3. Через пошук</h3>
-    <p>Натисни <kbd data-win></kbd> і почни писати: <b>лупа</b> або <b>екранна клавіатура</b>. Потім клацни на те, що знайшлося.</p>
-  </div>
-</section>
-
-<!-- ЛУПА -->
 <section id="lupa">
-  <h2><span class="num">3</span>🔍 Екранна лупа</h2>
-  <div class="card big">
-    <p><b>Що це?</b> Збільшувальне скло для екрана.</p>
-    <p><b>Кому допомагає?</b> Людям, які погано бачать. А ще тим, хто хоче показати дрібну деталь усьому класу.</p>
+  <h2><span class="num">2</span>🔍 Екранна лупа</h2>
+  <p class="big">Збільшує все на екрані.</p>
+  <div class="combo" data-keys="Win|+" data-title="Увімкнути / збільшити" data-map="1"></div>
+  <div class="grid2">
+    <div class="combo" data-keys="Win|−" data-title="Зменшити"></div>
+    <div class="combo" data-keys="Win|Esc" data-title="Вимкнути"></div>
+    <div class="combo" data-keys="Ctrl|Alt|F" data-title="Весь екран"></div>
+    <div class="combo" data-keys="Ctrl|Alt|L" data-title="Віконце-лупа"></div>
+    <div class="combo" data-keys="Ctrl|Alt|D" data-title="Смужка зверху"></div>
+    <div class="combo" data-keys="Ctrl|Alt|I" data-title="Кольори навпаки"></div>
   </div>
-
-  <div class="combo" data-keys="Win|+" data-title="Увімкнути лупу і збільшити" data-map="1"></div>
-  <div class="box info"><span class="ico">🔎</span><div>Клавіша <b>+</b> — справа вгорі, біля <b>Backspace</b>. На ній написано <b>+</b> і <b>=</b>. Можна натиснути й <b>+</b> на цифровому блоці справа.</div></div>
-
-  <div class="combo" data-keys="Win|−" data-title="Зменшити" data-map="1"></div>
-  <div class="combo" data-keys="Win|Esc" data-title="Вимкнути лупу" data-map="1"></div>
-
-  <div class="card">
-    <h3>Змінювати розмір мишкою</h3>
-    <p>Затисни <kbd>Ctrl</kbd> і <kbd>Alt</kbd> та крути <b>коліщатко мишки</b> 🖱️. Від себе — більше, до себе — менше.</p>
-  </div>
-  <div class="combo" data-keys="Ctrl|Alt|🖱️" data-title="Масштаб коліщатком"></div>
-
-  <h3 style="font-size:23px;margin-top:30px">Три способи дивитися через лупу</h3>
-  <div class="modes">
-    <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="10" y="10" width="140" height="80" rx="4" fill="#2f6bff" opacity=".22"/><text x="80" y="62" font-size="32" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text></svg>
-      <h4>1. Весь екран</h4>
-      <p>Збільшується <b>увесь</b> екран.</p>
-    </div>
-    <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><g opacity=".35" fill="currentColor"><rect x="12" y="14" width="90" height="5" rx="2"/><rect x="12" y="26" width="120" height="5" rx="2"/><rect x="12" y="38" width="70" height="5" rx="2"/><rect x="12" y="74" width="100" height="5" rx="2"/></g><rect x="60" y="36" width="80" height="44" rx="6" fill="#7a4de0" opacity=".25" stroke="#7a4de0" stroke-width="2"/><text x="100" y="66" font-size="19" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text></svg>
-      <h4>2. Лупа</h4>
-      <p>Маленьке віконце-лупа. Воно <b>ходить за мишкою</b>.</p>
-    </div>
-    <div class="mode">
-      <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="2" y="2" width="156" height="96" rx="8" fill="none" stroke="currentColor" opacity=".35" stroke-width="2"/><rect x="6" y="6" width="148" height="34" rx="4" fill="#17a066" opacity=".25" stroke="#17a066" stroke-width="2"/><text x="80" y="31" font-size="19" text-anchor="middle" fill="currentColor" font-weight="900">Аа</text><g opacity=".35" fill="currentColor"><rect x="12" y="52" width="90" height="5" rx="2"/><rect x="12" y="64" width="120" height="5" rx="2"/><rect x="12" y="76" width="70" height="5" rx="2"/></g></svg>
-      <h4>3. Смужка зверху</h4>
-      <p>Збільшене зображення з’являється <b>у смужці вгорі</b>.</p>
-    </div>
-  </div>
-
-  <div class="combo" data-keys="Ctrl|Alt|F" data-title="1. Весь екран" data-map="1"></div>
-  <div class="combo" data-keys="Ctrl|Alt|L" data-title="2. Лупа" data-map="1"></div>
-  <div class="combo" data-keys="Ctrl|Alt|D" data-title="3. Смужка зверху" data-map="1"></div>
-
-  <div class="box fun"><span class="ico">🧠</span><div><b class="t">Як запам’ятати букви?</b><b>F</b> — Full (повний), <b>L</b> — Lens (лінза), <b>D</b> — Docked (закріплений).</div></div>
-
-  <h3 style="font-size:23px;margin-top:30px">Корисні фокуси лупи</h3>
-  <div class="combo" data-keys="Ctrl|Alt|I" data-title="Кольори навпаки: білий стає чорним" data-map="1"></div>
-  <p>Так легше читати людям, яким болить очам від яскравого білого екрана. Натисни ще раз, щоб повернути, як було.</p>
-  <div class="combo" data-keys="Ctrl|Alt|Enter" data-title="Лупа читає текст уголос 🔊" data-map="1"></div>
-  <p>Щоб зупинити читання, натисни ці клавіші ще раз. Не забудь увімкнути звук або навушники 🎧.</p>
-
-  <div class="card">
-    <h3>⚙️ Налаштування лупи</h3>
-    <p>Тут можна вибрати, <b>наскільки</b> збільшувати і <b>на скільки</b> змінювати розмір за одне натискання.</p>
-    <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Екранна лупа</span></div>
-  </div>
-  <div class="combo" data-keys="Win|Ctrl|M" data-title="Відкрити налаштування лупи" data-map="1"></div>
+  <div class="combo" data-keys="Win|U" data-title="Усі спеціальні можливості"></div>
 </section>
 
-<!-- КЛАВІАТУРА -->
 <section id="kb">
-  <h2><span class="num">4</span>⌨️ Екранна клавіатура</h2>
-  <div class="card big">
-    <p><b>Що це?</b> Клавіатура, намальована на екрані. Натискаєш на букви <b>мишкою</b> або пальцем, якщо екран сенсорний.</p>
-    <p><b>Кому допомагає?</b> Людям, яким важко натискати звичайні клавіші. А ще вона рятує, коли клавіатура зламалась 😅.</p>
+  <h2><span class="num">3</span>⌨️ Екранна клавіатура</h2>
+  <p class="big">Друкуєш мишкою. Клавіші клацаєш <b>по черзі</b>.</p>
+  <div class="combo" data-keys="Win|Ctrl|O" data-title="Увімкнути / вимкнути" data-map="1"></div>
+  <div class="grid2">
+    <div class="combo" data-keys="Shift|А" data-title="Велика буква" data-mode="click"></div>
+    <div class="combo" data-keys="Ctrl|A" data-title="Виділити все" data-mode="click"></div>
+    <div class="combo" data-keys="Ctrl|C" data-title="Копіювати" data-mode="click"></div>
+    <div class="combo" data-keys="Ctrl|V" data-title="Вставити" data-mode="click"></div>
   </div>
-
-  <div class="combo" data-keys="Win|Ctrl|O" data-title="Увімкнути або вимкнути екранну клавіатуру" data-map="1"></div>
-  <div class="box info"><span class="ico">🔤</span><div>Тут <b>O</b> — англійська буква «О». На українській розкладці на цій клавіші буква <b>Щ</b>.</div></div>
-
-  <div class="card">
-    <h3>Інший спосіб</h3>
-    <div class="path"><span>Параметри</span><i>→</i><span>Спеціальні можливості</span><i>→</i><span>Клавіатура</span><i>→</i><span>Екранна клавіатура: Увімк.</span></div>
-  </div>
-
-  <h3 style="font-size:23px;margin-top:30px">Як набрати велику літеру</h3>
-  <p class="big">На екранній клавіатурі клавіші натискаються <b>по черзі</b>, а не разом! Спочатку клацаєш мишкою <b>Shift</b>, потім букву.</p>
-  <div class="combo" data-keys="Shift|А" data-title="Велика буква «А»" data-mode="click"></div>
-  <div class="combo" data-keys="Ctrl|C" data-title="Скопіювати на екранній клавіатурі" data-mode="click"></div>
-  <div class="box tip"><span class="ico">💡</span><div>Після клацання <b>Shift</b> чи <b>Ctrl</b> кнопка світиться. Вона чекає, поки ти клацнеш наступну клавішу.</div></div>
-
-  <div class="card">
-    <h3>Особливі кнопки справа</h3>
-    <div class="osk-btns">
-      <div><b>Fn</b> показує клавіші F1–F12</div>
-      <div><b>Nav</b> додає клавіші Home, End та інші</div>
-      <div><b>Mv Up</b> / <b>Mv Dn</b> пересувають клавіатуру вгору чи вниз</div>
-      <div><b>Dock</b> прикріплює клавіатуру до низу екрана</div>
-      <div><b>Fade</b> робить клавіатуру прозорою, як привида 👻</div>
-      <div><b>Параметри</b> — налаштування</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>⚙️ Цікаві налаштування (кнопка «Параметри»)</h3>
-    <div class="tbl-wrap"><table class="tbl">
-      <tr><td>🔊 <b>Звук натискання</b></td><td>Клавіші клацають</td></tr>
-      <tr><td>🔢 <b>Цифрова клавіатура</b></td><td>З’являються цифри справа</td></tr>
-      <tr><td>👆 <b>Наведення на клавіші</b></td><td>Не треба клацати! Тримаєш мишку над буквою, і вона сама вводиться</td></tr>
-      <tr><td>💬 <b>Передбачення тексту</b></td><td>Клавіатура підказує слова, як у телефоні</td></tr>
-    </table></div>
-  </div>
-
-  <div class="box fun"><span class="ico">🔐</span><div><b class="t">Цікавий факт</b>Деякі сайти банків просять вводити пароль саме екранною клавіатурою. Так шпигунським програмам важче «підглянути», що ти натискаєш.</div></div>
+  <p>🌐 Мова: значок <b>УКР/ENG</b> внизу справа.</p>
 </section>
 
-<!-- ЗАВДАННЯ -->
 <section id="tasks">
-  <h2><span class="num">5</span>Практичне завдання</h2>
-  <div class="card big">
-    <p>Виконуй завдання по черзі. Коли закінчиш одне, постав ✔ у квадратику.</p>
-    <p>Побачиш <span class="shot">📸 скриншот</span>, значить, треба сфотографувати екран. Ось як:</p>
-  </div>
-  <div class="combo" data-keys="Win|Shift|S" data-title="📸 Зробити скриншот" data-map="1"></div>
-  <p>Потім виділи мишкою потрібну частину екрана. Картинка скопіюється, і її можна вставити у звіт: <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
-
-  <div class="box info"><span class="ico">⏱️</span><div><b class="t">Усього 3 завдання, приблизно 20 хвилин</b>Кожне завдання займе 5–7 хвилин.</div></div>
+  <h2><span class="num">4</span>Завдання</h2>
+  <div class="combo" data-keys="Win|Shift|S" data-title="📸 Скриншот"></div>
 
   <div class="task" data-id="t1">
-    <div class="task-head"><input type="checkbox" id="t1"><label for="t1">Завдання 1. Прочитай секрет 🔍 <span class="tag2 t-l">ЛУПА</span></label></div>
+    <div class="task-head"><input type="checkbox" id="t1"><label for="t1">1. Секретний текст 🔍</label></div>
     <div class="body">
-      <p>Тут дуже дрібний текст. Прочитай його через лупу!</p>
-      <div class="sample tiny">Секрет: «Я вмію користуватися лупою!» Число: 4719.</div>
+      <div class="sample tiny">Екранна лупа допомагає людям, які погано бачать. Вона збільшує текст і картинки. Мій секретний код: 4719-ЛУПА.</div>
       <ol>
-        <li>Натисни <kbd data-win></kbd> + <kbd>+</kbd> кілька разів, поки текст не стане великим.</li>
-        <li><span class="shot">📸 скриншот</span></li>
-        <li>Перепиши секрет і число сюди:</li>
+        <li>Збільш лупою (<kbd data-win></kbd>+<kbd>+</kbd>) і передрукуй текст <b>повністю</b>.</li>
+        <li><span class="shot">📸</span> збільшеного тексту. Вимкни лупу.</li>
       </ol>
-      <textarea class="try" data-save="t1text" placeholder="Напиши тут секрет і число…"></textarea>
-      <ol start="4"><li>Вимкни лупу: <kbd data-win></kbd> + <kbd>Esc</kbd>.</li></ol>
+      <textarea class="try" id="a1" data-save="a1" placeholder="Передрукуй текст…"></textarea>
+      <button class="check" data-check="1">Перевірити</button> <span class="res" id="r1"></span>
     </div>
   </div>
 
   <div class="task" data-id="t2">
-    <div class="task-head"><input type="checkbox" id="t2"><label for="t2">Завдання 2. Друкую мишкою ⌨️ <span class="tag2 t-k">КЛАВІАТУРА</span></label></div>
+    <div class="task-head"><input type="checkbox" id="t2"><label for="t2">2. Тільки мишкою ⌨️</label></div>
     <div class="body">
       <ol>
-        <li>Увімкни екранну клавіатуру: <kbd data-win></kbd> + <kbd>Ctrl</kbd> + <kbd>O</kbd>.</li>
-        <li>Клацни мишкою в поле нижче.</li>
-        <li>Надрукуй <b>мишкою</b> своє ім’я. Першу букву зроби великою: спочатку клацни <b>Shift</b>, потім букву.</li>
+        <li>Увімкни екранну клавіатуру. Звичайну — <b>не чіпай!</b></li>
+        <li>Надрукуй: <b>Мене звати Ім’я. Я вчуся у 8 класі!</b> (своє ім’я, великі літери, крапка і знак оклику).</li>
+        <li>Екранною клавіатурою: <b>Ctrl→A</b>, <b>Ctrl→C</b>, клацни в кінець, <b>Enter</b>, <b>Ctrl→V</b>. Речення має бути <b>двічі</b>.</li>
+        <li><span class="shot">📸</span></li>
       </ol>
-      <textarea class="try" data-save="t2text" placeholder="Друкуй тут мишкою…"></textarea>
-      <ol start="4"><li><span class="shot">📸 скриншот</span></li></ol>
+      <textarea class="try" id="a2" data-save="a2" placeholder="Друкуй тут мишкою…"></textarea>
+      <button class="check" data-check="2">Перевірити</button> <span class="res" id="r2"></span>
     </div>
   </div>
 
   <div class="task" data-id="t3">
-    <div class="task-head"><input type="checkbox" id="t3"><label for="t3">Завдання 3. Обидва разом ⭐ <span class="tag2 t-l">ЛУПА</span><span class="tag2 t-k">КЛАВІАТУРА</span></label></div>
+    <div class="task-head"><input type="checkbox" id="t3"><label for="t3">3. Суперрежим ⭐</label></div>
     <div class="body">
       <ol>
-        <li>Екранна клавіатура вже увімкнена. Увімкни ще й лупу: <kbd data-win></kbd> + <kbd>+</kbd>.</li>
-        <li>Надрукуй мишкою у поле: <b>я молодець</b></li>
+        <li>Увімкни лупу, режим <b>«Смужка зверху»</b> і <b>кольори навпаки</b>.</li>
+        <li>Екранною клавіатурою дай відповіді (слово <b>Win</b> — англійською):</li>
       </ol>
-      <textarea class="try" data-save="t3text" placeholder="я молодець"></textarea>
+      <p class="q3">а) Яка комбінація вмикає лупу?</p>
+      <input class="try1" id="a3a" data-save="a3a" placeholder="Win + …">
+      <p class="q3">б) Яка комбінація вмикає екранну клавіатуру?</p>
+      <input class="try1" id="a3b" data-save="a3b" placeholder="Win + …">
+      <p class="q3">в) Кому допоможе екранна клавіатура? (мінімум 5 слів)</p>
+      <input class="try1" id="a3c" data-save="a3c" placeholder="…">
+      <button class="check" data-check="3">Перевірити</button> <span class="res" id="r3"></span>
       <ol start="3">
-        <li><span class="shot">📸 скриншот</span>, на якому видно лупу і клавіатуру.</li>
-        <li>Вимкни лупу <kbd data-win></kbd> + <kbd>Esc</kbd> і клавіатуру <kbd data-win></kbd> + <kbd>Ctrl</kbd> + <kbd>O</kbd>.</li>
+        <li><span class="shot">📸</span> з лупою, клавіатурою і відповідями.</li>
+        <li>Вимкни все: кольори, лупу, клавіатуру.</li>
       </ol>
     </div>
   </div>
+
+  <div class="box info"><span class="ico">📤</span><div>Надішли вчителю <b>4 скриншоти</b>.</div></div>
 </section>
 
-<!-- ТЕСТ -->
 <section id="quiz">
-  <h2><span class="num">6</span>Перевір себе</h2>
+  <h2><span class="num">5</span>Тест</h2>
   <div class="card quiz" id="quizBox"></div>
   <button class="main" id="checkQuiz">Перевірити ✔</button><span id="score" aria-live="polite"></span>
 </section>
 
-<!-- ЗВІТ -->
-<section id="report">
-  <h2><span class="num">7</span>Звіт для вчителя</h2>
-  <div class="card big">
-    <p>Надішли вчителю:</p>
-    <ol class="steps">
-      <li>Свої <b>3 скриншоти</b> <span class="shot">📸</span>.</li>
-      <li><b>Одне речення:</b> кому допоможуть лупа й екранна клавіатура?</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h3>📋 Шпаргалка</h3>
-    <div class="tbl-wrap"><table class="tbl cheat">
-      <tr><td><kbd data-win></kbd>+<kbd>U</kbd></td><td>Спеціальні можливості</td></tr>
-      <tr><td><kbd data-win></kbd>+<kbd>+</kbd></td><td>Лупа: увімкнути і збільшити</td></tr>
-      <tr><td><kbd data-win></kbd>+<kbd>−</kbd></td><td>Лупа: зменшити</td></tr>
-      <tr><td><kbd data-win></kbd>+<kbd>Esc</kbd></td><td>Лупа: вимкнути</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F</kbd> / <kbd>L</kbd> / <kbd>D</kbd></td><td>Весь екран / лупа / смужка зверху</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td><td>Кольори навпаки</td></tr>
-      <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Enter</kbd></td><td>Читати вголос</td></tr>
-      <tr><td><kbd data-win></kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>Екранна клавіатура</td></tr>
-      <tr><td><kbd data-win></kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Скриншот</td></tr>
-    </table></div>
-  </div>
-</section>
-
 </main>
 
-<footer><div class="wrap">Практична робота «Лупа і клавіатура на екрані» · Windows 11 · 8 клас</div></footer>
+<footer><div class="wrap">Лупа і клавіатура на екрані · Windows 11 · 8 клас</div></footer>
 
 <script>
 (function(){
@@ -523,8 +363,8 @@ footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
   function codeOf(n){ return NAME2CODE[n] || (n.length===1 && /[A-Z]/.test(n) ? 'Key'+n : null); }
 
   // Карта клавіші Win
-  var wm = document.getElementById('winMap'); buildKb(wm);
-  wm.querySelectorAll('[data-code=MetaLeft],[data-code=MetaRight]').forEach(function(k){ k.style.setProperty('--c','#2f6bff'); k.classList.add('hl'); });
+  var wm = document.getElementById('winMap'); if (wm) { buildKb(wm);
+  wm.querySelectorAll('[data-code=MetaLeft],[data-code=MetaRight]').forEach(function(k){ k.style.setProperty('--c','#2f6bff'); k.classList.add('hl'); }); }
 
   // ---- Анімовані комбінації ----
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -664,22 +504,51 @@ footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
     cb.addEventListener('change', function(){ store.set(key, cb.checked?'1':'0'); upd(); });
   });
   upd();
-  document.querySelectorAll('textarea[data-save]').forEach(function(ta){
+  document.querySelectorAll('[data-save]').forEach(function(ta){
     var key='a11y-'+ta.dataset.save; ta.value = store.get(key)||'';
     ta.addEventListener('input', function(){ store.set(key, ta.value); });
   });
 
+
+  // ---- Перевірка завдань ----
+  function norm(t){ return (t||'').toLowerCase().replace(/[’'`ʼ]/g,'').replace(/[^0-9a-zа-яіїєґ+]/g,''); }
+  function show(id, ok, msg){ var r=document.getElementById(id); r.className='res '+(ok?'ok':'bad'); r.textContent=msg; }
+  function count(h,n){ var c=0,i=0; while((i=h.indexOf(n,i))>=0){c++;i+=n.length;} return c; }
+  var CHECK = {
+    1: function(){
+      var t = norm(document.getElementById('a1').value);
+      var target = norm('Екранна лупа допомагає людям, які погано бачать. Вона збільшує текст і картинки. Мій секретний код: 4719-ЛУПА.');
+      if (t===target) return show('r1', true, '✅ Ідеально!');
+      var miss = ['допомагає людям','погано бачать','збільшує текст','картинки','секретний код','4719'].filter(function(p){ return t.indexOf(norm(p))<0; });
+      show('r1', false, miss.length ? '❌ Не вистачає: ' + miss.join(', ') : '❌ Майже! Перевір кожне слово.');
+    },
+    2: function(){
+      var raw = document.getElementById('a2').value, t = norm(raw), errs = [];
+      if (count(t,'менезвати')<2) errs.push('речення має бути двічі');
+      if (count(t,'явчусяу8класі')<2) errs.push('«Я вчуся у 8 класі» двічі');
+      if (count(raw,'!')<2) errs.push('знак оклику !');
+      if (!/Мене звати [А-ЯІЇЄҐ]/.test(raw)) errs.push('ім’я з великої літери');
+      if (!/^\s*М/.test(raw)) errs.push('«Мене» з великої літери');
+      show('r2', !errs.length, errs.length ? '❌ Виправ: ' + errs.join('; ') : '✅ Чудово!');
+    },
+    3: function(){
+      var a=norm(document.getElementById('a3a').value), b=norm(document.getElementById('a3b').value), c=document.getElementById('a3c').value.trim();
+      var errs=[];
+      if (a!=='win++') errs.push('а) подумай ще');
+      if (!(b.indexOf('win')>=0 && b.indexOf('ctrl')>=0 && (b.indexOf('o')>=0 || b.indexOf('щ')>=0 || b.indexOf('о')>=0))) errs.push('б) подумай ще');
+      if (c.split(/\s+/).filter(Boolean).length<5) errs.push('в) потрібно мінімум 5 слів');
+      show('r3', !errs.length, errs.length ? '❌ ' + errs.join('; ') : '✅ Суперрежим пройдено!');
+    }
+  };
+  document.querySelectorAll('button.check').forEach(function(btn){ btn.addEventListener('click', function(){ CHECK[btn.dataset.check](); }); });
+
   // ---- Тест ----
   var Q = [
-    {q:'Що означає знак + у записі Ctrl + C?', a:['Треба натиснути клавішу з плюсом','Натиснути клавіші разом','Натиснути спочатку C, потім Ctrl'], c:1},
-    {q:'Як відкрити спеціальні можливості?', a:['Win + U','Win + L','Alt + U'], c:0},
-    {q:'Як увімкнути лупу?', a:['Ctrl + L','Win + +','Alt + +'], c:1},
-    {q:'Як вимкнути лупу?', a:['Win + Esc','Win + −','Ctrl + Esc'], c:0},
-    {q:'Який спосіб лупи показує збільшення у смужці вгорі?', a:['Весь екран','Лупа','Смужка зверху (Ctrl + Alt + D)'], c:2},
-    {q:'Що робить Ctrl + Alt + I?', a:['Вимикає комп’ютер','Змінює кольори навпаки','Відкриває інтернет'], c:1},
-    {q:'Як увімкнути екранну клавіатуру?', a:['Win + Ctrl + O','Win + K','Ctrl + Alt + K'], c:0},
-    {q:'Як набрати велику літеру на ЕКРАННІЙ клавіатурі?', a:['Клацнути Shift, потім букву','Двічі клацнути букву','Клацнути Enter'], c:0},
-    {q:'Кому допоможе екранна клавіатура?', a:['Тим, кому важко натискати звичайні клавіші','Тільки програмістам','Нікому'], c:0}
+    {q:'Що означає + у записі Ctrl + C?', a:['Натиснути клавішу з плюсом','Натиснути клавіші разом','Спочатку C, потім Ctrl'], c:1},
+    {q:'Як увімкнути лупу?', a:['Win + +','Ctrl + L','Alt + +'], c:0},
+    {q:'Як вимкнути лупу?', a:['Win + −','Win + Esc','Ctrl + Esc'], c:1},
+    {q:'Як увімкнути екранну клавіатуру?', a:['Win + K','Ctrl + Alt + K','Win + Ctrl + O'], c:2},
+    {q:'Як набрати велику букву на ЕКРАННІЙ клавіатурі?', a:['Клацнути Shift, потім букву','Двічі клацнути букву','Клацнути Enter'], c:0}
   ];
   var box = document.getElementById('quizBox');
   Q.forEach(function(item,i){
@@ -700,7 +569,7 @@ footer{padding:40px 0;color:var(--muted);font-size:15px;text-align:center}
         if(r.checked && +r.value===item.c) s++;
       });
     });
-    var msg = s===Q.length ? ' 🏆 Супер!' : (s>=6 ? ' 👍 Молодець!' : ' 💪 Спробуй ще раз!');
+    var msg = s===Q.length ? ' 🏆 Супер!' : (s>=4 ? ' 👍 Молодець!' : ' 💪 Спробуй ще раз!');
     document.getElementById('score').textContent = s + ' з ' + Q.length + msg;
   });
 })();
