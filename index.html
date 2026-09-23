@@ -286,19 +286,22 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
     <div class="task-head"><input type="checkbox" id="t3"><label for="t3">3. Суперрежим ⭐</label></div>
     <div class="body">
       <ol>
-        <li>Увімкни лупу, режим <b>«Смужка зверху»</b> і <b>кольори навпаки</b>.</li>
-        <li>Екранною клавіатурою дай відповіді (слово <b>Win</b> — англійською):</li>
+        <li>Екранна клавіатура: <kbd data-win></kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd> (якщо ще не увімкнена).</li>
+        <li>Лупа: <kbd data-win></kbd>+<kbd>+</kbd> → екран збільшився.</li>
+        <li>Смужка зверху: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> → збільшене зображення тепер у смужці вгорі.</li>
+        <li>Кольори навпаки: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> → білий став чорним.</li>
+        <li>Дай відповіді <b>тільки екранною клавіатурою</b>. Назви клавіш пиши англійською (ENG).</li>
       </ol>
-      <p class="q3">а) Яка комбінація вмикає лупу?</p>
-      <input class="try1" id="a3a" data-save="a3a" placeholder="Win + …">
-      <p class="q3">б) Яка комбінація вмикає екранну клавіатуру?</p>
-      <input class="try1" id="a3b" data-save="a3b" placeholder="Win + …">
+      <p class="q3">а) Яка комбінація <b>вимикає</b> лупу?</p>
+      <input class="try1" id="a3a" data-save="a3a" placeholder="… + …">
+      <p class="q3">б) Яка комбінація вмикає режим <b>«Весь екран»</b>?</p>
+      <input class="try1" id="a3b" data-save="a3b" placeholder="… + …">
       <p class="q3">в) Кому допоможе екранна клавіатура? (мінімум 5 слів)</p>
       <input class="try1" id="a3c" data-save="a3c" placeholder="…">
       <button class="check" data-check="3">Перевірити</button> <span class="res" id="r3"></span>
-      <ol start="3">
+      <ol start="6">
         <li><span class="shot">📸</span> з лупою, клавіатурою і відповідями.</li>
-        <li>Вимкни все: кольори, лупу, клавіатуру.</li>
+        <li>Вимкни все: кольори, лупу, клавіатуру (клавіші знайди вище на сторінці).</li>
       </ol>
     </div>
   </div>
@@ -534,8 +537,8 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
     3: function(){
       var a=norm(document.getElementById('a3a').value), b=norm(document.getElementById('a3b').value), c=document.getElementById('a3c').value.trim();
       var errs=[];
-      if (a!=='win++') errs.push('а) подумай ще');
-      if (!(b.indexOf('win')>=0 && b.indexOf('ctrl')>=0 && (b.indexOf('o')>=0 || b.indexOf('щ')>=0 || b.indexOf('о')>=0))) errs.push('б) подумай ще');
+      if (a!=='win+esc') errs.push('а) подумай ще');
+      if (b!=='ctrl+alt+f' && b!=='ctrl+alt+а') errs.push('б) подумай ще');
       if (c.split(/\s+/).filter(Boolean).length<5) errs.push('в) потрібно мінімум 5 слів');
       show('r3', !errs.length, errs.length ? '❌ ' + errs.join('; ') : '✅ Суперрежим пройдено!');
     }
