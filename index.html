@@ -217,6 +217,7 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
   <p class="big"><b>+</b> означає <b>разом</b>: затисни першу, натисни другу, відпусти.</p>
   <div class="combo" data-keys="Ctrl|C" data-title="Приклад" data-map="1"></div>
   <p><kbd data-win></kbd> — клавіша з віконцями, знизу зліва.</p>
+  <p><kbd data-win></kbd>+<kbd>U</kbd> — відкриває всі спеціальні можливості Windows.</p>
   <div class="card" id="trainer" tabindex="0" style="cursor:pointer">
     <div class="trainer-out" id="trainerOut">🎮 Клацни сюди і натискай клавіші</div>
     <div class="kb" id="trainerMap"></div>
@@ -230,12 +231,7 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
   <div class="grid2">
     <div class="combo" data-keys="Win|−" data-title="Зменшити"></div>
     <div class="combo" data-keys="Win|Esc" data-title="Вимкнути"></div>
-    <div class="combo" data-keys="Ctrl|Alt|F" data-title="Весь екран"></div>
-    <div class="combo" data-keys="Ctrl|Alt|L" data-title="Віконце-лупа"></div>
-    <div class="combo" data-keys="Ctrl|Alt|D" data-title="Смужка зверху"></div>
-    <div class="combo" data-keys="Ctrl|Alt|I" data-title="Кольори навпаки"></div>
   </div>
-  <div class="combo" data-keys="Win|U" data-title="Усі спеціальні можливості"></div>
 </section>
 
 <section id="kb">
@@ -288,20 +284,20 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
       <ol>
         <li>Екранна клавіатура: <kbd data-win></kbd>+<kbd>Ctrl</kbd>+<kbd>O</kbd> (якщо ще не увімкнена).</li>
         <li>Лупа: <kbd data-win></kbd>+<kbd>+</kbd> → екран збільшився.</li>
-        <li>Смужка зверху: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> → збільшене зображення тепер у смужці вгорі.</li>
-        <li>Кольори навпаки: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> → білий став чорним.</li>
+        <li>Смужка зверху: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> → лупа стала смужкою вгорі екрана, у ній видно збільшене місце, де стоїть мишка.</li>
+        <li>Кольори навпаки: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> → білий став чорним, а чорний білим. Натиснеш ще раз — кольори повернуться.</li>
         <li>Дай відповіді <b>тільки екранною клавіатурою</b>. Назви клавіш пиши англійською (ENG).</li>
       </ol>
       <p class="q3">а) Яка комбінація <b>вимикає</b> лупу?</p>
       <input class="try1" id="a3a" data-save="a3a" placeholder="… + …">
-      <p class="q3">б) Яка комбінація вмикає режим <b>«Весь екран»</b>?</p>
+      <p class="q3">б) Яка комбінація <b>зменшує</b> лупу?</p>
       <input class="try1" id="a3b" data-save="a3b" placeholder="… + …">
       <p class="q3">в) Кому допоможе екранна клавіатура? (мінімум 5 слів)</p>
       <input class="try1" id="a3c" data-save="a3c" placeholder="…">
       <button class="check" data-check="3">Перевірити</button> <span class="res" id="r3"></span>
       <ol start="6">
         <li><span class="shot">📸</span> з лупою, клавіатурою і відповідями.</li>
-        <li>Вимкни все: кольори, лупу, клавіатуру (клавіші знайди вище на сторінці).</li>
+        <li>Вимкни все: кольори (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>), лупу і клавіатуру (ці клавіші знайди вище на сторінці).</li>
       </ol>
     </div>
   </div>
@@ -535,10 +531,10 @@ button.check{margin-top:10px;background:var(--green);color:#fff;border:0;border-
       show('r2', !errs.length, errs.length ? '❌ Виправ: ' + errs.join('; ') : '✅ Чудово!');
     },
     3: function(){
-      var a=norm(document.getElementById('a3a').value), b=norm(document.getElementById('a3b').value), c=document.getElementById('a3c').value.trim();
+      var a=norm(document.getElementById('a3a').value), bRaw=document.getElementById('a3b').value, c=document.getElementById('a3c').value.trim();
       var errs=[];
       if (a!=='win+esc') errs.push('а) подумай ще');
-      if (b!=='ctrl+alt+f' && b!=='ctrl+alt+а') errs.push('б) подумай ще');
+      if (!/^\s*(win|вин|він)\s*\+\s*(-|−|–|—|minus|мінус)\s*$/i.test(bRaw)) errs.push('б) подумай ще');
       if (c.split(/\s+/).filter(Boolean).length<5) errs.push('в) потрібно мінімум 5 слів');
       show('r3', !errs.length, errs.length ? '❌ ' + errs.join('; ') : '✅ Суперрежим пройдено!');
     }
